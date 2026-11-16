@@ -1,0 +1,59 @@
+---
+title: "Test-Driven Development for Microservices"
+date: "2023-06-26"
+updated: "2026-05-28"
+summary: "If you read Kent Beck’s “Test-Driven Development By Example” you will learn that writing tests first enables you to make sense of your design as you go."
+category: "Delivery & systems thinking"
+originalUrl: "https://richardwbown.com/test-driven-development-for-microservices/"
+---
+
+import { Image } from "astro:assets";
+import image12 from "../../assets/migrated/test-driven-development-for-microservices/image-01.png";
+
+If you read Kent Beck’s “[Test-Driven Development By Example](https://richardwbown.com/test-driven-design-at-its-best-when-its-outside-in/)” you will learn that writing tests first enables you to make sense of your design as you go.
+
+The book was written around the time of Service-Oriented Architectures, but before Microservices were widely considered as an architectural pattern. Writing a monolithic application with classes and libraries as our areas of separation of responsibility, and crucially within a single code-base, is typically somewhat conceptually simpler than the usual scenario for a multi-repository, API-separated microservices application. So does that mean that we can’t do TDD for microservices or that it’s a bad idea? Also what does doing TDD mean for microservices?
+
+It’s good to remember that Test Driven Development isn’t the goal. The purpose of TDD is to force us into good habits around design and maintainability. We want the benefits of TDD in microservices but does the architecture allow it?
+
+Many of the microservices I have seen could benefit from taking a more TDD approach to design and development. Why? Because a lot of the time, testing is focused mainly on integration and higher-level testing towards end-to-end testing. This is a natural result of microservices being loosely coupled, often having an associated UI and using NoSQL data stores under the hood that enable quick prototyping and loose coupling. Having many interfaces as a matter of design invariably leads us to consider microservice interfaces the most important parts to test.
+
+## Inside or Outside?
+
+TDD tells us something else – start with a test, write your code to satisfy that test. With traditional approaches to building microservices, the internals of these services perhaps get overlooked.
+
+For a moment let us consider the testing pyramid.
+
+<Image src={image12} alt="Test pyramid" />
+
+I’ve borrowed the image from [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html) which goes further to say we just need to remember to write tests with *different granularity* and have fewer of them the higher up the stack you go. I believe these two rules are excellent advice.
+
+I’ve seen many examples of microservices tests which focus too much on integration, on interfaces between classes, services and external services and therefore tend to ignore the validation of data within the services to greater or lesser extents.
+
+## Framework Confusion
+
+Often, there are many attractive testing frameworks which promise to make testing easier for us. Fixtures in particular are one shortcut that allows us to create objects which are prepopulated (usually using object reflection) to save us from having to manually and laboriously build suitable testing objects. However, Fixtures can lead us to believe that testing is simple and straightforward, and that a passing test is a sign of quality.
+
+Fakes, mocks, stubs, doubles, contracts, spies and so on are discussed in depth in many places. Rather than overloading ourselves with terminology and performing ‘testing theatre’, I prefer to use real objects rather than mocks when it comes to writing tests.
+
+And defining tests for our interfaces that live outside of our microservices is an effective way to test our API Gateway and ensure that “all contracts are being honoured”.
+
+TDD tends to take the opposite, more stoic, approach. TDD makes us think carefully about which test we want to write to prove future functionality, and then design our code accordingly. These two approaches could not actually be more dissimilar.
+
+## So More Unit Testing or Less?
+
+Testing is not a “one size fits all” solution for every circumstance. Sometimes we do need to focus on unit testing, sometimes we get more value and more flexibility by focusing higher up the pyramid.
+
+It is vital that **developers understand that Unit Testing is not development testing**. Unit tests are not a technical check that things are working, but a fundamental sign-off that business logic at the lowest possible level is functionally correct.
+
+Here’s a summary list of the most important points to consider when testing a microservices-based architecture.
+
+1. *Unit tests must run quickly!*
+2. *Don’t fully rely on the test pyramid, but stay pragmatic* .
+3. *Aim for the highest level of integration while maintaining coverage, (importantly) speed and cost* .
+4. *Avoid sacrificing software design for testability, but also let your testing guide your design* .
+5. *Consider mocking only as a last resort* .
+
+Above all else, it is important to have a testing strategy and stick with it consistently, rather than applying test philosophy ad hoc to parts of our code.
+
+Hard-won experience in all of this led me to write a novel about software engineering, IT systems and the people who run them — and where things go wrong. A little like an anti-Phoenix Project. It’s called [Human Software](https://humansoftwarebook.com).

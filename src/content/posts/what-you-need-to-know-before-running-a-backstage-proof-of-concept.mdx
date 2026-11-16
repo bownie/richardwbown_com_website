@@ -1,0 +1,97 @@
+---
+title: "What you need to know before running a Backstage Proof of Concept"
+date: "2023-12-20"
+updated: "2024-12-01"
+summary: "This article is a jumping-off point to understanding what Backstage is and how you would run a proof-of-concept with it for your organisation."
+category: "Platform engineering"
+originalUrl: "https://richardwbown.com/what-you-need-to-know-before-running-a-backstage-proof-of-concept/"
+---
+
+import { Image } from "astro:assets";
+import image5 from "../../assets/migrated/what-you-need-to-know-before-running-a-backstage-proof-of-concept/image-01.png";
+
+This article is a jumping-off point to understanding what [Backstage](https://github.com/backstage/backstage) is and how you would run a proof-of-concept with it for your organisation. This is based on the work that I’ve done with my clients and from talking to those who have been through the process themselves in other organisations.
+
+Before I started, the main questions I wanted to answer with this POC were these:
+
+- Would Backstage provide significant additional value for a platform, DevOps or SAFe system team and the development teams we supported?
+- Would it be relatively simple to get up and running with Backstage and work with it going forward?
+
+Of course, ‘relatively simple’ is also **relative,** but I’m basing this on my expectations and coming from a deep technical background. My criteria are that if I think that it’s going to be too hard for an average ‘system team’ or ‘DevOps’ team ([Anti Type B DevOps Team Silo](https://web.devopstopologies.com/)) to implement, then it’s not going to be a success in the organisation.
+
+Therefore I’m considering Backstage as a potential investment in the software development lifecycle of the company.
+
+## Why Backstage?
+
+Like many people, I have heard good things about Backstage. Created by Spotify, it feels like it must be close to a best practice.  I’d arrived in a team that was busy automating its services, and I wanted to investigate a developer portal that could help us with self-service for our teams. We’d already experimented with building our own ‘interfaces’ with pipelines and YAML and wanted something more consistent. I immediately thought this would be an excellent opportunity to give it a test drive.
+
+And so we decided to put together a Backstage POC.
+
+## What is Backstage?
+
+[Backstage](https://github.com/backstage/backstage) describes itself as an “open platform for building developer portals”. At the heart of this is the software catalogue:
+
+*A centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in Backstage.*
+
+Seeing as we already had plenty of YAML, I thought this sounded promising. The docs go on to say that the software catalogue is designed for:
+
+1. *Helping teams manage and maintain the software they own. Teams get a uniform view of all their software; services, libraries, websites, ML models — you name it, Backstage knows all about it.*
+2. *Makes all the software in your company, and who owns it, discoverable. No more orphan software hiding in the dark corners of your software ecosystem.*
+
+So far, so good. But one of the very early warning signs I came across with Backstage is that it’s very much centred around the **building** of developer portals. There is little focus on the onboarding experience for development organisations that want to start from a state of sensible defaults.
+
+That’s when I hit the first of quite a few brick walls.
+
+## Complexity
+
+One of the core roles of a developer portal or platform is to provide discovery of dependencies. And out-of-the-box, this is something that is not plug-and-play with Backstage.
+
+Firstly, before you can start playing around, you must connect the platform to your infrastructure and provide some form of authentication. Github authentication is possible and probably the simplest route, but to make this work, you must create a Github OAuth application with a callback to the deployed application.
+
+We still use Azure DevOps as our main automation engine for CI/CD.  Azure DevOps integration is via PAT token but again there is no simple way of integrating this change into Backstage, you can follow some simple tutorials but this involves making code changes in typescript, importing new modules etc.
+
+I quickly realised that it would be more than a day or two before I had something usable.
+
+## Where I Should Have Started
+
+It would be best if I had started with [this page](https://backstage.io/docs/features/software-catalog/):
+
+<Image src={image5} alt="Backstage Software Catalog use cases" />
+
+This implies a significant team-related element to Backstage and that it’s skewed in favour of microservice architectures and potentially one team owning many services.
+
+Our situation was very different. We had a monolithic, mainly on-prem architecture with cloud elements and few cloud-native or ‘small’ separate services. Additionally, our teams are not particularly skilled in modern front-end frameworks and also, importantly, don’t really tend to think of themselves as having the ability to influence the configuration of their deployments. In other words, *our organisational setup didn’t sound like it would align with how Backstage was designed.*
+
+This is an important distinction which came to the surface in my discussions with others who had already implemented Backstage. It’s designed not to be consumed by teams as much as configured and supported by teams. Therefore, a core learning of mine is this:
+
+***Only consider Backstage if your teams think it’s a good idea.***
+
+Suffice it to say that Backstage has no straightforward installation that seamlessly integrates your organisation’s software libraries and makes sense of them. It is up to you and your teams to work alongside each other to provide this value. You must carefully and painstakingly integrate all of them and then you can start to see the benefits of a single dashboard for service health, deployment status etc.
+
+Alternatively, if you flip this argument on its head, you can say that **Backstage allows teams to manage their software catalogues for themselves**. This again is an important organizational distinction – if you org is ready to go towards this level of autonomy – then this will offer significant advantages.
+
+## Documentation
+
+My introduction to Backstage via the documentation left an impression of something that has grown rather than something planned. The introductory docs assume a lot of knowledge; and quite specific developer knowledge at that. Similarly, for the configuration and architecture of the software there is a lot to learn from a technical perspective. For example, just looking at the [Azure Devops plugin](https://github.com/backstage/backstage/blob/master/plugins/azure-devops/README.md) documentation assume a lot of knowledge on the part of the reader.
+
+Assuming that your teams are comfortable working with node, yarn, typescript, React and so on – Backstage could be a very powerful ally in understanding complexity. But in many ways, it feels like a tool born to solve that particular problem.
+
+If many teams have many services, then service discovery, service management, and ‘true’ DevOps are things these teams must do daily.
+
+If your organisation works in release cycles of months rather than minutes or hours, Backstage might not be a worthwhile solution.
+
+## Alternatives
+
+While researching, I came across some alternatives that promise a smoother and easier onboarding process. There are alternative hosted platforms such as [Cortex](https://www.cortex.io/) an [Port.io](https://www.getport.io/). I also came across [Humanitec](https://humanitec.com/) and talked to their CEO to discuss their technology. It quickly became apparent, though, that a hosted solution wouldn’t be an option for us. I also felt these Internal Developer Portals were more suitable for development houses with large microservices/Kubernetes architectures.
+
+For those of us still in the middle of our DevOps journey, we might get distracted by adding any more tooling complexity and instead, it might be better for us to focus on the basics of automation and using what we already have.
+
+## Summary
+
+While Backstage is attractive, comes from the fêted Spotify and has many proponents within the industry, the devil is truly in the details, and Backstage does very little to hide the details from you.
+
+From my discussions with others who have implemented Backstage, I have heard stories of multiple FTEs being assigned to deliver and manage it, and I can well believe that it requires a significant investment in people, time and enthusiasm from developer teams. Therefore don’t think you can just turn it on and start getting benefits from it from day one. It will require planning and integration with many of your other tools to bring benefits.
+
+On the other hand, if you already have a complex microservices landscape and your teams are struggling to understand which components do what, this could be invaluable for you.
+
+Match the level of your organization’s DevOps maturity to the tool. In my mind, your organization already needs to be ticking many boxes before you should be considering this level of tooling integration.

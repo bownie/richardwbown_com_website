@@ -1,0 +1,68 @@
+---
+title: "How To Build a Successful Platform Team"
+date: "2023-09-16"
+updated: "2024-12-01"
+summary: "In an ideal world, there would be no technical debt."
+category: "Platform engineering"
+originalUrl: "https://richardwbown.com/how-to-build-a-successful-platform-team/"
+---
+
+In an ideal world, there would be no technical debt. No legacy. We could build whatever we like and then throw it away when we are done with it. You may have read [books](https://richardwbown.com/resources/) about clean code, refactoring, test-driven development and so on.  You agree and want to strive for high code coverage and quick-running tests which bring meaningful Continuous Integration and the ability to release on demand.
+
+But, while we are striving for perfection, we have to deal with reality. The reality is that code is messy, build pipelines are usually always complicated, your systems are interdependent and getting agreement on a single direction, let alone fixing all of your technical debt and legacy is usually a pipe dream. If you’re working on it already, you know that it’s a significant amount of work in progress.
+
+As technical people, our instinct is often to jump to technical solutions. Likewise, when it comes to considering how we can start to think about our platforms as products, we often think about them from a technical perspective – how will it work rather than **who will it serve**.
+
+## Platform Engineering
+
+The essence of platform engineering is to build a platform internally to help your development teams move more quickly. It eases the **cognitive load** of the teams. This means that it reduces what they need to think about (to keep in working memory) when they go about their own work delivering customer value.
+
+This means freeing up developers so that they can concentrate on working on customer problems rather than focussing on the details of what they need to do to solve internal problems.
+
+Challenges platform teams can assist includes:
+
+- Helping development teams build and design their solutions
+- Acting as a bridge to architecture
+- Creating code and APIs that serve multiple internal audiences
+- Helping teams get access to the right tools and infrastructure
+- Providing  skills and knowledge to teams to work with the right tools and infrastructure
+- Knowing the organisational architecture well enough to make the team’s products a reality
+- Assisting teams get permission to make the changes they want
+- Allowing development teams to focus on delivering features for their own product owners or managers
+
+Platform teams therefore provide a mixture of solutions and assistance.
+
+## Brittle Platforms Are Better Than No Platform
+
+Usually at least one platform team will already exist in an organisation, even if it’s not called that right now. It might be a technical support team, a build and configuration team, in [SAFe](https://scaledagileframework.com/) this might be called a System Team.
+
+The team might be one person, it might be ten people. It might work in an unstructured way with little planning, without sprints or goals. It may work with a diverse number of products acting as gatekeeper for access as well as providing support and help to other teams.
+
+The tools and services that are provided might be sub-optimal. It might be that the build pipelines are long and slow, tests are flaky and the process itself might be brittle and unreliable. However, it’s a mistake to underestimate any existing platform.
+
+Existing platforms provide a valuable service. Even if it might seem unreliable, it is what teams are used to. Changing this service too quickly will cause pain to teams and the organisation as a whole. Anything that interrupts that service will cause immediate pain to the entire organisation. If bug fixes can’t be made available at short notice, customers get irritated.
+
+So while it’s tempting to start talking directly about product-led platforms, this might be a step too far too quickly.
+
+Therefore when designing a new way of looking at your organisation, more in line with [Conway’s Law](https://richardwbown.com/conways-law/) and perhaps [Team Topologies](https://richardwbown.com/team-topologies/), think about how you can migrate your platform team (or teams) into ones which start to serve your internal customers – your developers – better.
+
+## The Vision for a Platform Team
+
+So before you come up with a new solution, look at what you have already. Create an inventory of the tools, services and products that the team (or teams) already provide and make a plan which turns into a vision for your new platform team.
+
+But firstly find out:
+
+- What infrastructure does the platform team provide?
+- Does the platform team act as custodian or gatekeeper for any services?
+- How many teams does this platform support?
+- What are the requirements for the support? Is this already agreed as an SLA?
+- Where is your organization heading? How will the platform team (or teams) need to serve your development teams in the future?
+- How is the team currently managed and how does this fit in with your roadmap?
+
+As you ask more and more questions, the goal of the team should become clearer. As the goal becomes clearer a vision of the customer should appear. Once you have a clear (internal) customer vision, your products should become obvious.
+
+It is more than likely that when you have a complete list of customers and products for your platform team, it seems too much for a single team to cope with. This may lead to you thinking about breaking your platform team into multiple teams which serve different types of customers. Indeed you may end up with platform teams which serve other platform teams. For example, you might imagine an infrastructure platform team serving an API platform team which itself serves multiple development teams.
+
+Remember to start with what you have already and treat it with respect. You already have a platform team even if you don’t know it yet.
+
+*(post image by DALL-E 2: prompt “building a platform together in a garden as kids in the style of mondriaan”)*

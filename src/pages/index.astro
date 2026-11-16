@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const allPosts = await getCollection("posts");
+const postsBySlug = new Map(
+  allPosts.map((post) => [post.id.replace(/\.mdx?$/, ""), post])
+);
+const highlights = [
+  "residues-time-change-and-uncertainty-in-software-architecture-barry-oreilly",
+  "susanne-kaiser-architecture-for-flow",
+  "what-you-need-to-know-before-running-a-backstage-proof-of-concept",
+  "do-bounded-contexts-and-domain-driven-design-even-matter",
+  "legacy-systems-and-the-cost-of-hidden-technical-debt"
+]
+  .map((slug) => postsBySlug.get(slug))
+  .filter((post) => post !== undefined);
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Richard W. Bown"
+};
+---
+
+<BaseLayout
+  title="Richard W. Bown — Software Architect"
+  description="Writing and appearances on software architecture, platform engineering, and software delivery."
+  canonicalPath="/"
+  structuredData={person}
+>
+  <section aria-labelledby="intro-title">
+    <h1 id="intro-title">Richard W. Bown</h1>
+    <p class="lede">Senior software architect working across platform engineering and software delivery.</p>
+    <p>
+      I write about software architecture, platform engineering, and delivery
+      systems. This site brings together selected writing, talks, and podcasts.
+    </p>
+    <ul class="link-list" aria-label="Explore">
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/talks/">Talks &amp; Podcasts</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="highlights-title">
+    <h2 id="highlights-title">Selected writing</h2>
+    <ul class="post-list">
+      {highlights.map((post) => (
+        <li>
+          <a href={`/${post.id.replace(/\.mdx?$/, "")}/`}>{post.data.title}</a>
+          <p class="post-summary">{post.data.summary}</p>
+        </li>
+      ))}
+    </ul>
+    <p><a href="/writing/">All writing</a></p>
+  </section>
+</BaseLayout>

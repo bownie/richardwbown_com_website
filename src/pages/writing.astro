@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const posts = await getCollection("posts");
+const categories = [
+  "Architecture",
+  "Platform engineering",
+  "Delivery & systems thinking"
+] as const;
+const groupedPosts = categories.map((category) => ({
+  category,
+  posts: posts
+    .filter((post) => post.data.category === category)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+}));
+---
+
+<BaseLayout
+  title="Writing — Richard W. Bown"
+  description="Selected writing on software architecture, platform engineering, and delivery and systems thinking."
+  canonicalPath="/writing/"
+>
+  <h1>Writing</h1>
+  <p class="lede">A selection of writing on software and the systems around it.</p>
+  {groupedPosts.map(({ category, posts: categoryPosts }) => (
+    <section aria-labelledby={`category-${category}`}>
+      <h2 id={`category-${category}`}>{category}</h2>
+      <ul class="post-list">
+        {categoryPosts.map((post) => (
+          <li>
+            <a href={`/${post.id.replace(/\.mdx?$/, "")}/`}>{post.data.title}</a>
+            <p class="post-meta">
+              <time datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  timeZone: "UTC"
+                })}
+              </time>
+            </p>
+            <p class="post-summary">{post.data.summary}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  <section aria-labelledby="papers-title">
+    <h2 id="papers-title">Papers</h2>
+    <ul class="post-list">
+      <li>
+        <p>
+          TODO: Add the verified PDF for A Systems Approach to Software Product
+          Delivery (version 1.1).
+        </p>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>

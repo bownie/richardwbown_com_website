@@ -1,0 +1,86 @@
+---
+title: "Avoiding Toxicity: How to Manage Cognitive Load"
+date: "2023-08-23"
+updated: "2026-04-25"
+summary: "Less than a year ago, I read Team Topologies for the first time."
+category: "Delivery & systems thinking"
+originalUrl: "https://richardwbown.com/avoiding-toxicity-how-to-manage-cognitive-load/"
+---
+
+import { Image } from "astro:assets";
+import image11 from "../../assets/migrated/avoiding-toxicity-how-to-manage-cognitive-load/image-01.jpg";
+
+Less than a year ago, I read [Team Topologies](https://richardwbown.com/team-topologies/) for the first time. I was immediately struck by how it aligned with my experiences of how software engineering organizations become successful. For me, Team Topologies gives unparalleled advice to those leading software organizations to help them design better organizational structures and architectures. Building organizations that work more efficiently and effectively for the benefit of their customers.
+
+I’ve found that it pays to re-read Team Topologies. Real-life situations where sub-optimal team structures or interaction patterns occur inform us. We can frame team experience and make decisions using the many available [heuristics](https://github.com/TeamTopologies/Independent-Service-Heuristics).
+
+A [recent review of Team Topologies](https://martinfowler.com/bliki/TeamTopologies.html) by Martin Fowler further reminded me how managing **cognitive load** is central to the story of Team Topologies and how it can be used to identify areas for change and to reshape organizations and teams.
+
+The impact of cognitive load on performance is expertly explored in [this excellent article by the book’s authors](https://techbeacon.com/app-dev-testing/forget-monoliths-vs-microservices-cognitive-load-what-matters). The advice given in this article includes limiting the interaction patterns, using independent stream-aligned teams, plus building the thinnest available platform.
+
+While implicitly agreeing with much of what Team Topologies says, the book makes specific statements about team composition and individual mindset that don’t match 100% with my experience. Specifically regarding the ‘team first mindset’ and those who don’t fit potentially being considered ‘team toxic’, I have usually thought of as contextual or dynamic problems.
+
+Considering that people or teams are continuously evolving, ‘toxic’ could be a behaviour that reacts to a situation. What could be regarded as ‘toxic’ might be someone pushing the boundaries of what is currently accepted. This doesn’t necessarily mean unwanted behaviour in the longer-term team context.
+
+Anyone with suitable skills and the right attitude can work successfully in a team. Sometimes, individuals don’t mesh with a particular team dynamic at one specific time. However, teams are adaptable. They can take on board outlying ideas over time. Team Topologies acknowledges that heterogeneous teams are healthy. Therefore, there must be a way to relabel or accept formerly ‘toxic’ team members as ‘good’ team members. But how?
+
+Cognitive load could be the key here. Could we pick team activities that actively reduce or exploit our “cognitive load”? Can we “reverse Conway” our behaviours to influence our personal preferences? If appropriately expressed, this could change the team’s perception of so-called valuable behaviour.
+
+What does this mean practically? Perhaps we can change teams from within using light-touch techniques to counter overloaded dynamics. This would mean identifying and limiting cognitive load at an individual and team level. Combined with the organizational awareness and adoption of Team Topologies ideas, this could bring the benefits of fast flow before, during or even after any organizational change.
+
+To explore this more, we need to dive deeper into the definition of cognitive load.
+
+## Types of cognitive load
+
+Just to recap the Team Topologies view of John Sweller’s ideas about [cognitive load](https://en.wikipedia.org/wiki/Cognitive_load) are defined as follows:
+
+| INTRINSIC | Related to aspects of the task fundamental to the problem space. Example: How is a class defined in Java? |
+| --- | --- |
+| EXTRANEOUS | Related to the environment in which the task is being done. Example: How do I deploy this component, again? |
+| GERMANE | Related to aspects of the task that need special attention for learning or high performance. Example: How should this service interact with the ABC service? |
+
+**Team Topologies explanation of John Sweller’s types of Cognitive Load**
+
+If we, as engineers, consider how we would like to spend time ‘loading’ our brain with complexity, what would that look like?
+
+This might look a little like the left picture below.
+
+<Image src={image11} alt="How We Might Perceive Cognitive Load" />
+
+If you take the total area of the circles to mean the amount of time we spend on an area, on the left, we spend the most effort on *germane* activities. These high-performance activities demonstrate how well we understand new concepts and apply ourselves to things we typically enjoy about our work. For software developers, this will be equated with building something new or being able to explore new ideas, languages, and technologies. Of course, we also need to expend some intrinsic load to perform our job successfully. These are daily tasks we must incur. Daily loading of unavoidable things we must have in our work day. We hope that we have as little *extraneous* loading as possible. Extraneous load interferes with our flow and ability to perform at our best.
+
+Does this mean that if we can maximize *germane* activities, we are necessarily more satisfied with our work? I would argue not, and for a variety of reasons. Firstly, we do not work alone. We work in a team. Germane work could be collaborative work. What we find germane may not be what someone else finds germane. Moreover, what we find germane today, may not be germane tomorrow. Therefore there might be tension between what the team finds (or expects or is told) to be germane and what an individual does. Also, the rhythm of *intrinsic load* can be good for some people on some days, and it’s toil for the same people on others.
+
+For example, in a refinement session, one engineer might argue for a spike to explore a new technology because they see this as *germane*. The rest of the team thinks this is unnecessary because they know they don’t want to use that technology. How this resolves itself depends on the context. Perhaps the team is new. Maybe the one engineer is new. Could the one engineer be more junior or senior? This context changes how the team might react to this person arguing passionately for this spike.
+
+So while having a high *germane* load might be an ideal scenario for *some* engineers, what actually happens in real life in ‘the thick of it’?
+
+Our actual loading typically looks more like the picture on the right. We spend most of our time as an established team in an established (or entrenched) organization fighting extraneous load. We still have a sizeable intrinsic overhead and little time or energy for *germane* work.
+
+Therefore, cognitive load changes with context. It changes with our perceptions and within our daily team dynamics. One day to another, we might have less *extraneous* loading. We might be able to load up on *germane* work. Sometimes *germane* work quickly becomes *extraneous* because we don’t understand it or because of external factors when we try to apply it. The type of work we’re doing is, therefore also dynamic.
+
+*Note: Cognitive Load Theory is a large subject with most research occurs with individuals in controlled environments. I am using these labels of cognitive load outside of their original research and context in an experimental way to build on other work. Recent research ([The Evolution of Cognitive Load Theory and the Measurement of Its Intrinsic, Extraneous and Germane Loads: A Review](https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1354&context=scschcomcon)) points out that it’s hard to measure any of the mental workload states accurately and indicates this circularity effect (where load changes) is potentially real.*
+
+## How cognitive load shapes us and the team
+
+Therefore I believe that **recognizing** these forms of cognitive load can help us realize when it’s time to do something different in our day-to-day work at a personal and team level. This can also help steer the team direction. This might mean we have to learn something or invest some time. They may mean we have to fix something. They may mean we must spend time with someone to make a change. This also ties in with what Gene Kim identifies as one of his five ideals – “Improvement of Daily Work”.
+
+Any team member can effectively recognize how this loading changes the dynamic and suggest a change to the routine. If the team is not amenable, perhaps that’s a sign it’s too overloaded even to contemplate change.
+
+By understanding how different types of cognitive loading affect us all individually, we can become more effective as a team. The team must accept that individuals have a context which changes according to loading. Then we can agree on how the team works and what is acceptable in that team context.
+
+For example, if there has been a period of extraneous work due to an outage or a failure the team should respond. Perhaps the most appropriate thing a team can do is to ensure the outage or failure cannot happen again immediately. Or perhaps instead, it’s to go and blow off some steam at a bowling alley. The team decides what is the right approach in this case.
+
+## Creating a Team Context
+
+Returning to Team Topologies, I would argue that by agreeing on how a team works internally, a team also decides implicitly how it works most effectively with other teams. This could inform the [Team Topologies Team API](https://github.com/TeamTopologies/Team-API-template) or the team’s defined way of interacting with others.
+
+Recognising excessive *extraneous* cognitive load and paying it down regularly helps shape the team. This can  help better define our team structure and goals. More importantly, by communicating freely and openly, the team can align itself immediately with whatever is required to make it more effective.
+
+We can modify our behaviour accordingly if we recognize that our cognitive load changes through our work. We can alleviate the frustrations of ourselves and others by communicating well and taking action when necessary to further the team goal. Potentially, we can avoid falling into the trap of becoming ‘toxic’ to that team through frustration or feelings of powerlessness. As team members, if we learn to contribute to the team context to improve flow, we should gradually find more and more of our work relevant to the customer.
+
+A team-first approach to solving customer issues should be the most satisfying part of our work. If that doesn’t motivate us, and we have tried to alleviate toil, the team fit may be inappropriate.
+
+Recognise how much time we spend in the various ‘modes’ of cognitive load and seek a team fit for that. This could improve team interactions and lead us to define a more realistic team identity.
+
+*Human Software is the novel about what happens when the cognitive load never lets up. [Human Software →](https://humansoftwarebook.com)*

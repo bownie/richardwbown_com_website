@@ -1,0 +1,76 @@
+---
+title: "John Romero’s Ten Principles for Building Great Software"
+date: "2023-01-05"
+updated: "2024-12-01"
+summary: "I discovered this incredible talk from last year by game legend John Romero."
+category: "Delivery & systems thinking"
+originalUrl: "https://richardwbown.com/john-romeros-ten-principles-for-building-great-software/"
+---
+
+import { Image } from "astro:assets";
+import image13 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-01.png";
+import image14 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-02.png";
+import image15 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-03.png";
+import image16 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-04.png";
+import image17 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-05.png";
+import image18 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-06.png";
+import image19 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-07.png";
+import image20 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-08.png";
+import image21 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-09.png";
+import image22 from "../../assets/migrated/john-romeros-ten-principles-for-building-great-software/image-10.png";
+
+I discovered [this incredible talk](https://www.youtube.com/watch?v=IzqdZAYcwfY) from last year by game legend [John Romero](https://twitter.com/romero).
+
+In the talk, he picks out his top ten principles for collaboration in building great software. I think these are worth highlighting and repeating and applying to the software development ‘industry’ in some way. Bear in mind that [Id Software](https://www.idsoftware.com/en-us) created the biggest games of the 90s including Doom, Quake and Castle Wolfenstein and run as a small team in the 90s with a handful of developers, no source control for the most part and everyone working in the same room.
+
+I’ve borrowed his slides from youtube, so I hope he doesn’t mind me sharing his wisdom! Check out [the original](https://www.youtube.com/watch?v=IzqdZAYcwfY) for context and more explanation of the slides.
+
+I’m representing these in the order that they are given in the talk.
+
+So let’s start!
+
+<Image src={image13} alt="No prototypes. Just make the game. Polish as you go. Don't depend on polish happening later. Always maintain constantly shippable code." />
+
+A no-brainer for modern software dev teams. Use CI/CD to ensure that you have code that is always shippable. Use automated testing to verify quality and shippability.
+
+<Image src={image14} alt="It's incredibly important that your game can always be run by your team. Bulletproof your engine by providing defaults upon load failure." />
+
+Defensive coding may or may not help your situation but having sensible defaults ensures operability at least – not suitable for all circumstances. John mentions making default usage VERY obvious, though.
+
+<Image src={image15} alt="Keep your code absolutely simple. Keep looking at your functions and figure out how you can simplify further." />
+
+Great advice for any individual or team. How simple can you make your code? What do you hope to achieve by making it more complex or mystical? Think about how someone else will look at your code.
+
+<Image src={image16} alt="Great tools help make great games. Spend as much time on tools as possible." />
+
+Does this still apply? You bet. Even in the world of a million DevOps tools there is always space for something new. Check out the open-source world for examples – google is your friend. When you find yourself doing something manually over and over again – that is your cue to automate it. If you can’t automate it simply, perhaps you need to build a tool to do that?
+
+<Image src={image17} alt="We are our own best testing team and should never allow anyone else to experience bugs or see the game crash. Don't waste others' time. Test thoroughly before checking in your code." />
+
+Good advice for that developers to ensure that there is adequate testing in place before they commit their code.
+
+<Image src={image18} alt="As soon as you see a bug, you fix it. Do not continue on. If you don't fix your bugs your new code will be built on a buggy codebase and ensure an unstable foundation." />
+
+Fix bugs now. Ensure that your CI can run regularly and quickly to validate your changes in an integration test.
+
+<Image src={image19} alt="Use a development system that is superior to your target." />
+
+This you might say is a no-brainer but John has a nice story about almost buying a Cray supercomputer which puts it into context!
+
+<Image src={image20} alt="Write your code for this game only - not for a future game. You're going to be writing new code later because you'll be smarter." />
+
+Slight contradiction in the presentation because while John says that this is important,  he also says that elements are always used between games/projects when they can’t be written any better. So keep an open mind about re-use. Code like it’s the first time but keep a weather eye on the future.
+
+<Image src={image21} alt="Encapsulate functionality to ensure design consistency. This minimizes mistakes and saves design time." />
+
+This relates to how a user experiences certain elements of gameplay. Functionality which should go together in terms of experience should be encapsulated or at least graphed so that consequences happen logically. This is great food for thought in terms of your architecture. How will your architecture impact the user experience?
+
+<Image src={image22} alt="Try to code transparently. Tell your lead and peers exactly how you are going to solve your current task and get feedback and advice. Do not treat game programming like each coder is a black box. The project could go off the rails and cause delays." />
+
+Great advice for any team. Ensure that anyone can pick up the code you’re creating. Ensure that you’re aligned with the best practice.
+
+#### In Summary
+
+I think these 10 principles can still be applied across any software project. Notice that there is an emphasis on maintainability and cleanliness of code, quality and openness. If you apply these principles then your code will be lean, well-maintained and have low technical debt. This ensures that you’re actively avoiding anything becoming legacy before its time.
+
+When it comes to writing clean, modular, performant code, there really has to be fewer better than [John Romero](https://en.wikipedia.org/wiki/John_Romero) and [John Carmack](https://en.wikipedia.org/wiki/John_Carmack) and the rest of the team. Best to heed their ideas and think about this some more. I certainly will.

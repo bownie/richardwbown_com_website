@@ -1,0 +1,45 @@
+---
+title: "Are Relational Databases still important in the Age of NoSQL?"
+date: "2023-04-26"
+updated: "2024-12-01"
+summary: "Ten or more years ago, the IT world was in the grip of the big data hype cycle."
+category: "Architecture"
+originalUrl: "https://richardwbown.com/are-relational-databases-still-important-in-the-age-of-nosql/"
+---
+
+Ten or more years ago, the IT world was in the grip of the big data hype cycle. Then we were told that unstructured data – data lakes and flexible querying would be the future. NoSQL databases were the way forward and relational databases were dead.
+
+Over the last decade, we’ve seen the situation become more nuanced than that. Relational Databases were never going to go away because their use was just too widespread. SQL databases are ubiquitous, cheap, well-understood, easy to extend and manage and relatively easy to optimise. NoSQL technology was new and evolving and the solutions tended to provide optimisation for specific use cases. What we see since then is the continued maturity of NoSQL.
+
+Now rather than it being SQL vs NoSQL we have four distinct categories of NoSQL database that provide different types of solutions.
+
+- Key-Value NoSQL databases (highly performant, often in-memory, simple retrieval and horizontally scalable)
+- Document-Based NoSQL (structured data held typically in JSON, BSON, YAML or XML) allows for the flexible restructuring of data.
+- Graph-Based NoSQL – a collection of nodes connected by edges.
+- Wide Column Based NoSQL – similar to RDBMS but with flexible columns per row (no predefined columns or names)
+
+All four types optimise the more generalised RDBMS-type solutions and offer performant ways of storing, updating and retrieving data differently. But why do we need them?
+
+## Is it Data Storage or a Data Bus?
+
+The use of flexible data stores has become increasingly important when used with microservice architectures. Enabling asynchronous communication and decoupling data with architectural patterns such as [Event Sourcing](https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing) and [CQRS](https://www.martinfowler.com/bliki/CQRS.html) (Command Query Responsibility Separation) can provide a good solution for scaling an application. Decoupling read and write from database connections and utilising [pubsub](https://blog.logrocket.com/nodejs-pub-sub-messaging-brokers/) can utilise NoSQL databases as message brokers. One example of a prevalent NoSQL key-value data store and message broker is [Redis](https://en.wikipedia.org/wiki/Redis). Similarly you might have come across [Apache Kafka](https://www.startdataengineering.com/post/what-why-and-how-apache-kafka/) being used to provide pub/sub services to microservice apps or connected web apps.
+
+At this point, it’s easy to get confused. Is Kafka really a NoSQL database under the hood? Is Redis really a streaming Data Bus? And when do we use what? This question on StackOverflow sums up the confusion:
+
+[Why do We Require Apache Kafka with NoSQL Databases?](https://stackoverflow.com/questions/48742935/why-we-require-apache-kafka-with-nosql-databases)
+
+**TL;DR: you don’t**
+
+So it seems we have almost too much choice. The products that are available overlap in functionality providing both a communication mechanism and a data store.
+
+This is a fact not limited to NoSQL databases. I’ve worked on projects where the replication mechanism of relational databases has been used as a reliable communication backbone.
+
+## So We Still Need Columns?
+
+Many web applications get built initially without a relational database. This improves the speed of development but can eventually slow down the application operationally. Switching over (at least partially) to a relational solution often happens for performance reasons. Columns and relationships between them give hints to relational database engines allowing them to outperform their more flexible counterparts in the NoSQL world. Again it’s picking the right solution to solve your particular problem. Therefore, it’s not unusual to see NoSQL, message broker and SQL databases working alongside each other in microservice applications.
+
+And, you may ask, what about ensuring data integrity? Relational Databases enforce [ACID](https://www.bmc.com/blogs/acid-atomic-consistent-isolated-durable/) but the more distributed your data around your application, the more that [CAP theory](https://medium.com/nerd-for-tech/understand-cap-theorem-751f0672890e) becomes important.
+
+In other words, it’s complicated.
+
+But that is the subject for another blog post 🙂

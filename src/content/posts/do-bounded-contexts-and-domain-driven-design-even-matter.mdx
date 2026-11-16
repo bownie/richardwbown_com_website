@@ -1,0 +1,42 @@
+---
+title: "Do Bounded Contexts and Domain Driven Design even matter?"
+date: "2023-01-27"
+updated: "2026-06-09"
+summary: "One of the core concepts of Domain Driven Design (Eric Evans) is the Bounded Context."
+category: "Architecture"
+originalUrl: "https://richardwbown.com/do-bounded-contexts-and-domain-driven-design-even-matter/"
+---
+
+One of the core concepts of **Domain Driven Design (Eric Evans)** is the Bounded Context.
+
+According to Martin Fowler:
+
+***Bounded Context is a central pattern in Domain-Driven Design. It is the focus of DDD’s strategic design section which is all about dealing with large models and teams. DDD deals with large models by dividing them into different Bounded Contexts and being explicit about their interrelationships.  
+***
+
+So the story goes:
+
+- There must be a team assigned to work on a *Bounded Context* .
+- There should be a separate source code repository for each *Bounded Context.*
+- It is possible that one team can work in several *Bounded Contexts,* but several teams should not work in a single *Bounded Context* .
+
+This ties in with the notation of what [Team Topologies](https://teamtopologies.com/) says about team organisation. That a team should work on one context and they should be able to work independently on delivering value to that context – and therefore (if properly organised) the customer.
+
+Making a team responsible for a bounded **business** context (in another source code repo) without it becoming a bottleneck to progress implies a few things:
+
+1. All changes to that service need to be made by this team
+2. The resulting service is independently released, and, therefore, the service supports multiple versions of interfaces necessary for other services.
+
+Does this mean that the code needs to be separate repos? I would argue not necessarily. Does this mean that the architecture needs to be microservices? No, not at all. This could be a part of a monolith if the release cycle is independent.
+
+The key to **flow** – which is the fancy name for saying how to do stuff quickly and safely – is picking the right boundaries to define the context. In the simple case, it’s relatively straightforward. In the more complex case, it is more difficult to find a boundary that yields a context (and service) that can be independent. Some approaches have been posited such as finding [Independent Services through Heuristics](https://teamtopologies.com/key-concepts-content/finding-good-stream-boundaries-with-independent-service-heuristics) but ultimately does any of this matter?
+
+## A Practical Approach
+
+All of that is very theory-heavy. How does it actually work on the ground? Because typically, we don’t have the luxury of keeping our architecture this clean. We are working from a messy pile of where we are, rather than where we want to be. So is it instead just enough to believe in bounded contexts as a goal rather than as an absolute?
+
+I believe it is. I believe it’s easy to either completely ignore architectural and team organisational advice and just “be” with a piece of software, or to try and work in that way. Because ultimately, there is nothing that can prove one way or another that the approach you are taking is going to firstly understand their own business context, let alone develop for it.
+
+I’ve built enterprise systems; I’ve built a lot of object-oriented code; I’ve defined interfaces and boundaries and modelled until the cows come home, but nothing beats working code, and working code is always, always, always a compromise. If you’re modelling your way into a situation where you think you won’t need to compromise, or you think you’re smart enough to foresee all possible future scenarios, then fine, go ahead and model.
+
+For more of my opinions on how software should be, versus how it is, you can read my debut novel, an antidote to mavens, consultants and experts everywhere. It’s called [Human Software](https://humansoftwarebook.com) and DDD gets a look in as do many other hot-topic engineering subjects.

@@ -1,0 +1,25 @@
+---
+title: "How to Visualise Your Systems"
+date: "2023-05-05"
+updated: "2024-12-01"
+summary: "In a recent podcast episode, Nico Krijnen and I talked about requirements analysis, especially the use of diagrams – particularly context diagrams and DDD..."
+category: "Architecture"
+originalUrl: "https://richardwbown.com/how-to-visualise-your-systems/"
+---
+
+import { Image } from "astro:assets";
+import image0 from "../../assets/migrated/how-to-visualise-your-systems/image-01.jpg";
+
+In a recent [podcast episode](https://richardwbown.com/podcast-avoiding-legacy-ddd-collaborative-architecture-and-product-thinking-with-nico-krijnen/), Nico Krijnen and I talked about requirements analysis, especially the use of diagrams – particularly context diagrams and DDD context maps, C4 system diagrams and business process canvases. Understanding, architecting and supporting our systems in a collaborative way is easier when we have diagrams that easily explain what we are doing and why.
+
+As [Simon Brown](https://twitter.com/simonbrown) (the inventor of C4) says, different audiences require a common way of viewing our systems. This is similar to the concept of *ubiquitous language* in Domain Driven Design. If we can learn to reflect the reality of system interactions from a context perspective, we can then use diagrams as our maps to navigate changes.
+
+Below I share an example of a simple system context map I drew in Miro. It shows the correct contextual landscape for a fictitious business system with certain interactions denoted by arrows and instead of actors I’m used rectangles that denote the department of the company that uses the systems.
+
+<Image src={image0} alt="How to Visualise Your Systems" />
+
+This is based on an actual system context map from a real business – and not a very large business at that. This shows the complexity of departments and systems interacting (departments in rectangles, systems in rounded rectangles).
+
+What this type of context map allows us to do (and similarly with context maps for bounded contexts and C4 contexts) is to play “what if”. For example, “what if” we want to replace the CUSTOMER WEBSITE? What dependencies are immediately obvious and what impact will this have to our way of working.
+
+So often we jump into details when the **helicopter view** or the **30,000ft view** is the actual picture we need to review in order to make sense of our change. More often than not, it can be that we chose to remove something rather than add it.

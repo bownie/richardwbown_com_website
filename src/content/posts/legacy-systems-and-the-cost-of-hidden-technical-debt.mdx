@@ -1,0 +1,47 @@
+---
+title: "Legacy Systems and the Cost of Hidden Technical Debt"
+date: "2026-01-14"
+updated: "2026-05-28"
+summary: "One of the most important recurring technical themes I explore in Human Software is how chronic underinvestment in core legacy systems, in favour of either..."
+category: "Architecture"
+originalUrl: "https://richardwbown.com/legacy-systems-and-the-cost-of-hidden-technical-debt/"
+---
+
+import { Image } from "astro:assets";
+import image4 from "../../assets/migrated/legacy-systems-and-the-cost-of-hidden-technical-debt/image-01.png";
+
+<Image src={image4} alt="Human Software by Richard Bown — book cover" />
+
+One of the most important recurring technical themes I explore in [Human Software](https://humansoftwarebook.com) is how chronic underinvestment in core legacy systems, in favour of either aggressive expansion or assumed obsolescence, leaves engineers having a terrible time. Systems that are described as “creaking” after 30-plus years represent a significant risk for managers who must balance business demands for flexibility against the reality of “smouldering piles of technical debt**“**.
+
+I also repeatedly warn against **“**resume-driven development**,”** where engineers might pad their CVs with cool-sounding technology rather than focusing on stable, effective solutions for existing platforms.
+
+But what are we engineers to do when faced with an old, complex system that needs modernisation and a management that is not keen to invest time and money in improving it? Likewise, for managers, is it possible to do this work almost under the covers, as the work we do day to day?
+
+> “We should ask ourselves why we still have these old systems when our customers want more? They want more flexibility. They want more power. We’re running on systems that are thirty-plus years old. They are creaking. We need to modernise. We need new thinking, new technology, new investment.”
+> 
+> **CHARLES KURTMAN – ENTERPRISE ARCHITECT, GERBACH INC.** (Chapter 2)
+
+## **You Versus the Code**
+
+Sometimes, as humans working in these complex systems, we have to choose between doing the right thing and doing the best thing. And the question then is, the best thing for whom? For you, for the team, or for the company? Sometimes, the best thing may be to do nothing with the code and do something for yourself instead. Occasionally, it may be necessary to tackle a migration head-on.
+
+In this [recent post on LinkedIn](https://www.linkedin.com/pulse/how-pm-tackled-6-month-migration-9-days-lived-tell-forrest-evans-wvt0c), a product manager talks about how they sidestepped a potentially expensive Java application migration using AI assistance in a fraction of the time and cost they expected with consultants. It’s an interesting post, and it is nuanced enough to admit that engineers were very much in the loop and in their thoughts while they did this work. However, the end result still equals a support headache for someone. There’s a migrated system which needs to be validated, understood and supported in a new context.
+
+If we choose to ignore the impact of our changes and just press on with either “CV-based development” or “AI-driven” development, we introduce risk. As a new engineer, you learn that the safest change is no change so while leaders may want to push ahead with something, sometimes it’s safer to go nowhere.
+
+## Meeting Peter
+
+One of my favourite characters in [Human Software](https://humansoftwarebook.com) is the old-timer Peter Watchett. Peter is a retired contractor who serves as Gerbach’s Database Administrator and all-around systems expert. He is cynical, grumpy, and highly experienced, often acting as the voice of reason and a often an accidental mentor and coach to those around him.
+
+Peter will always make the right choice, even if that means doing nothing. But how does he know? And what criteria does he use to make these decisions?
+
+Probably the best way to understand how he works is to see him in action. For example, when Beth approaches Peter to discuss the technical direction of Windows builds, he intentionally remains silent. He recognises that Beth is using him to “rubber duck” – a technique where a developer explains their thinking out loud to verify its validity. Instead of giving her the answer, he provides a non-committal prompt: “Sounds plausible. Why wouldn’t we do this?”
+
+During a Saturday morning review of a system outage, Peter uses pointed questions to guide the team’s reasoning. Rather than simply scolding them, he asks, “Well, if we turn them all off, how do we know which one of them is causing the issue?” This forces Grant and Beth to defend their “heat of the moment” decision-making and realise the logical flaw in their approach.
+
+When Beth is struggling to access training data for their “revolution,” Peter uses a series of prompts to guide her to a solution. He asks her to define the “actual situation,” identify the “thesis,” and determine the **“easiest way to accomplish this”** using Occam’s Razor. Through this dialogue, Beth concludes that they need physical access and a “patsy” of their own.
+
+We can learn from Peter, no matter what role we play in software engineering. If we learn to listen we can help the whole team think through a problem. When we come to a decision together, it’s the right one, even if that means doing nothing at all or learning a new skill.
+
+*If this resonated, the engineers in Human Software are living exactly this — keeping broken systems running while the business decides their fate. [Human Software →](https://humansoftwarebook.com)*

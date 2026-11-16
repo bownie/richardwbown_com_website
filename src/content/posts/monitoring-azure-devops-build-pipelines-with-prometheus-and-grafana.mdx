@@ -1,0 +1,103 @@
+---
+title: "Monitoring Azure DevOps Build Pipelines with Prometheus and Grafana"
+date: "2024-03-29"
+updated: "2024-12-01"
+summary: "The best way to have a good time at work is to ensure you have just the right amount of surprises in your day."
+category: "Platform engineering"
+originalUrl: "https://richardwbown.com/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/"
+---
+
+import { Image } from "astro:assets";
+import image8 from "../../assets/migrated/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/image-01.png";
+import image9 from "../../assets/migrated/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/image-02.png";
+
+The best way to have a good time at work is to ensure you have just the right amount of surprises in your day. The right amount of surprises is the minimum amount of surprises unless you are a serious endorphin junky. Living on endorphins released by the excitement of firefighting is something that no one should do long term; it’s not good for your health and well-being.
+
+Therefore the mundane things like ensuring that your build and deployment infrastructure is up and running should be ‘table stakes’. In other words, it should be easy for you to prove as a (platform) team that your service is up and running.
+
+So many teams forget to make it easy on themselves and the thing is, it’s very easy to get yourself in a position of power over your infrastructure using freely available and easily installable tools.
+
+This is a nice starting point for using Grafana and Prometheus if your team uses many different pools of [Azure DevOps](https://dev.azure/.com) on-prem (or in-cloud) build agents.
+
+## Get started
+
+Basic monitoring doesn’t have to be complicated. With just your laptop, you can set up monitoring infrastructure for your build agents and Azure DevOps pipelines.
+
+It’s super simple to set up using Docker from your workstation. Tomorrow, you might roll this out onto an EC2 using Terraform and Saltstack. Who knows?
+
+<Image src={image8} alt="Monitoring Azure Devops Build Pipelines with Prometheus and Grafana" />
+
+How? You can do it with a single configuration file and three docker commands:
+
+Firstly, you’ll need a prometheus.yml config file, which will tell Prometheus where to scrape its data from and how often.
+
+Create under a directory in your current directory called ‘prometheus’ and use ‘vi’ (or you favourite editor) to create a file under that:
+
+```
+$ mkdir prometheus
+$ vi prometheus/prometheus.yaml
+```
+
+Add the following contents to the file and save it:
+
+```
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+    - targets: ['localhost:9090']
+
+  - job_name: 'ado-exporter'
+    scrape_interval: 5s # for demo purpose
+    static_configs:
+    - targets: ['host.docker.internal:8080']
+```
+
+Then you are good to start Prometheus as follows:
+
+```
+$ docker run --name=prometheus -p 9090:9090 -v prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml -v prometheus-data:/prometheus prom/prometheus
+```
+
+Start the Azure DevOps exporter as follows (more details [on the GitHub page](https://github.com/webdevops/azure-devops-exporter)). This exporter requires an Azure Devops PAT (token) in order to connect to your organisation. Make sure you create a token with the correct permissions. Once it’s running it will scrape and show the utility of your Azure DevOps build infrastructure across your various build pools.
+
+```
+docker run webdevops/azure-devops-exporter --azuredevops.url=https://dev.azure.com/ --azuredevops.access-token=YOUR-PAT-TOKEN --azuredevops.organisation=YOUR-ORGANISATION
+```
+
+You can start Grafana as follows (in the background with the ‘-d’ flag) with plain default configuration. More details are [available here](https://grafana.com/grafana/download?edition=enterprise&platform=docker):
+
+```
+docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
+```
+
+Then you can check that all three docker containers are up and running using ‘docker ps’.
+
+Now you’re ready to connect to your grafana dashboard on localhost:3000 from your web browser. You can login with the default ‘admin’/’admin’ user/password and configure firstly your data source.
+
+This can also be automated in the future with a yml file but for the moment you can manually add a Data Source called “prometheus” at location “host.docker.internal:9090”.
+
+Once this is added you can start querying the data that prometheus is already collecting.
+
+## Building the Dashboard
+
+Once your reporting infrastructure is up and running, it’s time to build some dashboards. Luckily there are [plenty of examples](https://prometheus.io/docs/prometheus/latest/querying/examples/) plus the Azure Devops exporter comes with a few at the bottom of the GitHub page.
+
+<Image src={image9} alt="prometheus grafana build agents" />
+
+## Next steps
+
+The [prometheus site](https://prometheus.io/docs/prometheus/latest/installation/) is a great way to create and connect Prometheus to Grafana. There are also plenty of examples available for configuring this basic setup in Docker Compose. As you start to expand your network of Prometheus exporters you might come up with your own way of baking in into your own infrastructure automatically using Ansible or Salt or your favourite configuration management tool.
+
+If you want to find out more and see more detailed examples here’s a [lovely blog post](https://medium.com/htc-research-engineering-blog/build-a-monitoring-dashboard-by-prometheus-grafana-741a7d949ec2) with more meat on the bones.
+
+## Cheat Sheet
+
+Here are some useful links for handling and cleaning up docker. I’ll add more here as I come across them:
+
+From StackOverflow if the [docker name is already in use](https://stackoverflow.com/questions/31697828/docker-name-is-already-in-use-by-container) by a container.
+
+[https://github.com/prometheus/prometheus/blob/release-2.49/config/testdata/conf.good.yml](https://github.com/prometheus/prometheus/blob/release-2.49/config/testdata/conf.good.yml)
+
+[https://medium.com/htc-research-engineering-blog/build-a-monitoring-dashboard-by-prometheus-grafana-741a7d949ec2](https://medium.com/htc-research-engineering-blog/build-a-monitoring-dashboard-by-prometheus-grafana-741a7d949ec2)

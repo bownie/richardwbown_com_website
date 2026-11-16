@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const appearances = [
+  {
+    show: "We Are Developers World Congress",
+    title: "The QUEST for Better Software",
+    date: "July 2023",
+    description:
+      "My talk entitled The QUEST for Better Software from the We Are Developers World Congress in Berlin, July 2023.",
+    url: "https://www.youtube.com/watch?v=44nFyKMRa9Q"
+  }
+];
+const hosted = [
+  {
+    title: "Loving Legacy Podcast",
+    date: "TODO: confirm dates",
+    description:
+      "Catch up with old episodes where I discuss software engineering topics and talk to engineering and product leaders about legacy, tech debt, technology, architecture and software delivery in the real world.",
+    links: [
+      {
+        label: "Apple Podcasts",
+        url: "https://podcasts.apple.com/nl/podcast/software-delivery-club/id1617421731?l=en"
+      },
+      {
+        label: "Spotify",
+        url: "https://open.spotify.com/show/1Dg36ccMK4aeSuSNFt62ni"
+      }
+    ],
+    note: "TODO: confirm hosting role and supply individual episode links."
+  },
+  {
+    title: "Podcast: How Does Legacy and Tech Debt appear?",
+    date: "9 December 2022",
+    description:
+      "This time I discuss the significant causes of tech debt and put forward a way to deal with them at various levels in your organisation.",
+    links: [],
+    note: "TODO: confirm hosting role and supply the original episode link."
+  }
+];
+---
+
+<BaseLayout
+  title="Talks & Podcasts — Richard W. Bown"
+  description="Selected conference talk and podcast appearances by Richard W. Bown."
+  canonicalPath="/talks/"
+>
+  <h1>Talks &amp; Podcasts</h1>
+  <section aria-labelledby="appearances-title">
+    <h2 id="appearances-title">Appearances</h2>
+    <ul class="appearance-list">
+      {appearances.map((item) => (
+        <li>
+          <h3><a href={item.url}>{item.title}</a></h3>
+          <p>{item.show} · {item.date}</p>
+          <p class="post-summary">{item.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+  <section aria-labelledby="hosted-title">
+    <h2 id="hosted-title">Hosted — please confirm</h2>
+    <ul class="appearance-list">
+      {hosted.map((item) => (
+        <li>
+          <h3>{item.title}</h3>
+          <p>{item.date}</p>
+          <p>{item.description}</p>
+          {item.links.length > 0 && (
+            <p>
+              {item.links.map((link, index) => (
+                <>
+                  {index > 0 && " · "}
+                  <a href={link.url}>{link.label}</a>
+                </>
+              ))}
+            </p>
+          )}
+          <p class="muted">{item.note}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

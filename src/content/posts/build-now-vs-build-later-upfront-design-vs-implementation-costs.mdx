@@ -1,0 +1,37 @@
+---
+title: "Build Now vs Build Later: Upfront Design vs Implementation Costs"
+date: "2023-03-16"
+updated: "2024-12-01"
+summary: "In my recent podcast episode “Emergent Architecture and Beating the Monolith” I explore the idea that we don’t actually need to beat any monolith or..."
+category: "Architecture"
+originalUrl: "https://richardwbown.com/build-now-vs-build-later-upfront-design-vs-implementation-costs/"
+---
+
+import { Image } from "astro:assets";
+import image1 from "../../assets/migrated/build-now-vs-build-later-upfront-design-vs-implementation-costs/image-01.jpg";
+import image2 from "../../assets/migrated/build-now-vs-build-later-upfront-design-vs-implementation-costs/image-02.jpg";
+import image3 from "../../assets/migrated/build-now-vs-build-later-upfront-design-vs-implementation-costs/image-03.jpg";
+
+In my recent podcast episode “[Emergent Architecture and Beating the Monolith](https://lovin.legacycoding.org/episode/emergent-architectures-and-beating-the-monolith)” I explore the idea that we don’t actually need to beat any monolith or microservices architecture, just get along with the notion that we don’t start or end anywhere in particular and all architecture is essentially emergent.
+
+Following on from that I came across Another Wonderful Martin Fowler Post (AWMFP) called [“Monolith First”](https://www.martinfowler.com/bliki/MonolithFirst.html) and I have to smile because, yes, this is [the path of least resistance](https://richardwbown.com/is-the-path-of-least-resistance-sometimes-the-right-choice/). The corollary of this must be: “just start building something. Worry about what it actually is, later”.
+
+When writing the [podcast episode](https://lovin.legacycoding.org/episode/emergent-architectures-and-beating-the-monolith) I sketched out a few ideas of what upfront design vs implementation cost might look like. Three models appeared – one where you have no design upfront and just build something, one where you do “some” design in advance and one where you do “lots” of design upfront.
+
+Another concept from the episode is the “Time to First Gotcha” (TTFG) the time it takes you to realise as a project team that you’re going down the wrong track. Replan, rework and move on accordingly. Any rework costs time and money, therefore I examined three fictional scenarios where the implementation is interrupted by a ‘gotcha’ moment where the team realises they need to redesign or completely re-implement.
+
+In the first example, no gotchas we see how the cost is zero, low and medium according to upfront design costs. Eventually, the three paths settle around a notional number of 7k for the project cost.
+
+<Image src={image1} alt="Upfront Design vs Implementation Costs no gotchas 1" />
+
+In the second example, we have a gotcha at 3 months that requires more rework both from a design and development perspective. We see a picture where the line steepens for all three models and the total expense tops out above the previous model.
+
+<Image src={image2} alt="Upfront Design vs Implementation Costs 3 month gotcha 1" />
+
+Finally, we have a double gotcha, at three and six months and the consequent bump of costs above the 10k mark.
+
+<Image src={image3} alt="Upfront Design vs Implementation Costs 3 and 6 month gotchas" />
+
+I’ve made no attempt here to quantify the actual amount of design. I wanted to show how little it matters where you start, with what level of design – changes mean you’re always going to incur extra costs when you change your mind.
+
+The next question is – does better discovery lead to better project outcomes? How would you quantify discovery in this case and how would you know the outcomes you need?

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Richard W. Bown"
+};
+---
+
+<BaseLayout
+  title="About — Richard W. Bown"
+  description="About Richard W. Bown, software architect and writer."
+  canonicalPath="/about/"
+  structuredData={person}
+>
+  <h1>About</h1>
+  <p class="lede">Writer · software engineer</p>
+  <p>
+    Hard-bitten by three decades of corporate IT. Still a softie about people,
+    place, and a good story.
+  </p>
+  <p>TODO: Add a current architecture and platform-engineering biography.</p>
+  <p>TODO: Confirm role, employers, and dates for this profile.</p>
+  <p><a href="AUTHOR_SITE_URL">My novel site</a></p>
+</BaseLayout>
