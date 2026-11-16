@@ -1,5 +1,6 @@
 ---
 import { sitePath } from "../utils/site-url";
+import { showTalks } from "../data/talks";
 
 interface Props {
   title: string;
@@ -73,7 +74,7 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
       <a class="site-name" href={sitePath("")}>Richard W. Bown</a>
       <nav aria-label="Main navigation">
         <a href={sitePath("writing/")}>Writing</a>
-        <a href={sitePath("talks/")}>Talks &amp; Podcasts</a>
+        {showTalks && <a href={sitePath("talks/")}>Talks &amp; Podcasts</a>}
         <a href={sitePath("about/")}>About</a>
         <a href={sitePath("contact/")}>Contact</a>
       </nav>

@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import profilePhoto from "../assets/richard-bown-profile.jpg";
+import { sitePath } from "../utils/site-url";
 
 const person = {
   "@context": "https://schema.org",
@@ -10,17 +13,50 @@ const person = {
 
 <BaseLayout
   title="About — Richard W. Bown"
-  description="About Richard W. Bown, software architect and writer."
+  description="About Richard W. Bown."
   canonicalPath="about/"
   structuredData={person}
 >
   <h1>About</h1>
-  <p class="lede">Writer · software engineer</p>
-  <p>
-    Hard-bitten by three decades of corporate IT. Still a softie about people,
-    place, and a good story.
-  </p>
-  <p>TODO: Add a current architecture and platform-engineering biography.</p>
-  <p>TODO: Confirm role, employers, and dates for this profile.</p>
-  <p><a href="https://AUTHOR_SITE_URL">My novel site</a></p>
+  <Image
+    class="profile-photo"
+    src={profilePhoto}
+    alt="Richard Bown smiling outdoors in front of a brick wall."
+    width={320}
+  />
+  <section aria-labelledby="role-title">
+    <h2 id="role-title">Role</h2>
+    <p>TODO: Add a verified current role.</p>
+  </section>
+  <section aria-labelledby="focus-title">
+    <h2 id="focus-title">Focus areas</h2>
+    <p>TODO: Add verified focus areas.</p>
+  </section>
+  <section aria-labelledby="experience-title">
+    <h2 id="experience-title">Experience</h2>
+    <p>TODO: Add verified experience, employers, and dates.</p>
+  </section>
+  <section aria-labelledby="selected-work-title">
+    <h2 id="selected-work-title">Selected work</h2>
+    <p>
+      TODO: Replace
+      <a href="https://AUTHOR_SITE_URL">AUTHOR_SITE_URL</a> with the novel-site
+      URL.
+    </p>
+  </section>
+  <section aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact</h2>
+    <p>
+      TODO: Add preferred contact details on the
+      <a href={sitePath("contact/")}>Contact page</a>.
+    </p>
+  </section>
 </BaseLayout>
+
+<style>
+  .profile-photo {
+    width: min(100%, 20rem);
+    height: auto;
+    border-radius: 0.25rem;
+  }
+</style>

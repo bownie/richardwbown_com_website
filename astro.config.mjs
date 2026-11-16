@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import { showTalks } from "./src/data/talks.ts";
 
 const siteMode = process.env.SITE_MODE ?? "production";
 
@@ -62,6 +63,12 @@ export default defineConfig({
   base,
   output: "static",
   trailingSlash: "always",
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) =>
+        showTalks || !page.endsWith(`${base}talks/`)
+    })
+  ],
   redirects
 });

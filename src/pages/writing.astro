@@ -1,4 +1,5 @@
 ---
+import { existsSync } from "node:fs";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sitePath } from "../utils/site-url";
@@ -15,6 +16,11 @@ const groupedPosts = categories.map((category) => ({
     .filter((post) => post.data.category === category)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 }));
+const paperPath = new URL(
+  "../../public/downloads/A-Systems-Approach-to-Software-Product-Delivery-v1.1-Richard-Bown.pdf",
+  import.meta.url
+);
+const hasPaper = existsSync(paperPath);
 ---
 
 <BaseLayout
@@ -49,15 +55,20 @@ const groupedPosts = categories.map((category) => ({
       </ul>
     </section>
   ))}
-  <section aria-labelledby="papers-title">
-    <h2 id="papers-title">Papers</h2>
-    <ul class="post-list">
-      <li>
-        <p>
-          TODO: Add the verified PDF for A Systems Approach to Software Product
-          Delivery (version 1.1).
-        </p>
-      </li>
-    </ul>
-  </section>
+  {hasPaper && (
+    <section aria-labelledby="papers-title">
+      <h2 id="papers-title">Papers</h2>
+      <ul class="post-list">
+        <li>
+          <a
+            href={sitePath(
+              "downloads/A-Systems-Approach-to-Software-Product-Delivery-v1.1-Richard-Bown.pdf"
+            )}
+          >
+            A Systems Approach to Software Product Delivery (version 1.1)
+          </a>
+        </li>
+      </ul>
+    </section>
+  )}
 </BaseLayout>

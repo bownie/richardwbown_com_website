@@ -18,7 +18,6 @@ Source URLs were checked on 16 November 2026. Posts with a complete page body we
 | https://richardwbown.com/legacy-systems-and-the-cost-of-hidden-technical-debt/ | 200 | Migrated |
 | https://richardwbown.com/are-relational-databases-still-important-in-the-age-of-nosql/ | 200 | Migrated |
 | https://richardwbown.com/what-you-need-to-know-before-running-a-backstage-proof-of-concept/ | 200 | Migrated |
-| https://richardwbown.com/do-you-need-to-build-an-internal-developer-platform/ | 404 | Not migrated; source unavailable |
 | https://richardwbown.com/how-to-build-a-successful-platform-team/ | 200 | Migrated |
 | https://richardwbown.com/that-one-script-you-wrote-is-a-now-a-platform/ | 200 | Migrated; embedded Speaker Deck linked in the post |
 | https://richardwbown.com/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/ | 200 | Migrated |
@@ -34,8 +33,8 @@ Source URLs were checked on 16 November 2026. Posts with a complete page body we
 | https://richardwbown.com/se-radio-podcast-the-differences-between-devops-vs-sre/ | 404 | No episode details available |
 | https://richardwbown.com/lovin-legacy-podcast-the-business-of-legacy-making-software-change-successful/ | 404 | No episode details available |
 | https://richardwbown.com/lovin-legacy-podcast-jonathan-hall-devops-go-and-continuous-delivery-in-reverse/ | 404 | No episode details available |
-| https://richardwbown.com/loving-legacy-podcast/ | 200 | Source is a show archive, not an individual episode; listed under Hosted for confirmation |
-| https://richardwbown.com/podcast-how-does-legacy-and-tech-debt-appear/ | 200 | Episode title, date, and description extracted; no direct episode URL was linked, listed under Hosted for role/link confirmation |
+| https://richardwbown.com/loving-legacy-podcast/ | 200 | Source is a show archive, not an individual episode; no confirmed appearance entry added |
+| https://richardwbown.com/podcast-how-does-legacy-and-tech-debt-appear/ | 200 | Episode title, date, and description extracted, but no direct episode URL or role could be confirmed; not listed |
 | https://richardwbown.com/software-delivery-club-pod-getting-your-evenings-and-weekends-back/ | 404 | No episode details available |
 | https://richardwbown.com/software-delivery-club-pod-between-product-and-engineering/ | 404 | No episode details available |
 | https://richardwbown.com/can-software-engineers-fix-the-world-podcast-with-gene-kim/ | 404 | No episode details available |
@@ -43,19 +42,19 @@ Source URLs were checked on 16 November 2026. Posts with a complete page body we
 | https://richardwbown.com/podcast-making-it-software-more-sustainable-with-tom-kennes/ | 404 | No episode details available |
 | https://richardwbown.com/observability-engineering-and-customer-needs-with-stephen-townsend/ | 404 | No episode details available |
 | https://richardwbown.com/we-are-developers-world-congress-2023/ | 200 | “The QUEST for Better Software”; July 2023; original YouTube recording linked |
+| https://www.infoq.com/podcasts/humane-engineering-organizations/ | 200 | “Leading from Any Position: Richard Bown on Humane Engineering Organizations”; 12 December 2025; InfoQ Engineering Culture Podcast; confirmed guest appearance |
 
-The Loving Legacy page links to the show on Apple Podcasts and Spotify but does not expose episode-level details. The “How Does Legacy and Tech Debt Appear?” source page is dated 9 December 2022 and does not link an original episode. Please confirm whether these belong under Hosted and supply episode links where available.
+The Loving Legacy page links to the show on Apple Podcasts and Spotify but does not expose episode-level details. The “How Does Legacy and Tech Debt Appear?” source page is dated 9 December 2022 and does not link an original episode. Neither is included in public appearances until its role and original episode link can be confirmed.
 
 ## About and paper
 
 | Source URL | Fetch result | Migration |
 | --- | --- | --- |
-| https://richardwbown.com/about/ | 301 to https://richardwbownauthor.com/; destination returned 200 | About uses the available “Writer · software engineer” and three-decades-in-corporate-IT copy. Role, employers, dates, and current architecture biography remain marked TODO rather than inferred. |
-| https://richardwbown.com/wp-content/uploads/2022/08/A-Systems-Approach-to-Software-Product-Delivery-v1.1-Richard-Bown.pdf | Direct request returned 403; a browser-style request returned 200 but redirected to the site homepage as HTML | No PDF was saved or linked. The Papers section has a TODO so it does not point to a broken/non-PDF file. |
+| https://richardwbown.com/about/ | 301 to https://richardwbownauthor.com/; destination returned 200 | About is now a TODO-only template; no role, focus areas, experience, or selected-work claims were inferred. |
+| https://richardwbown.com/wp-content/uploads/2022/08/A-Systems-Approach-to-Software-Product-Delivery-v1.1-Richard-Bown.pdf | Direct request returned 403; a browser-style request returned 200 but redirected to the site homepage as HTML | No PDF was saved or linked. The Papers section is hidden unless the requested PDF exists in `public/downloads/`. |
 
 ## Requested items still missing
 
-- **Post:** `do-you-need-to-build-an-internal-developer-platform` — source URL returned 404.
 - **Talk/podcast entries with no source page (404):**
   - `se-radio-podcast-the-differences-between-devops-vs-sre`
   - `lovin-legacy-podcast-the-business-of-legacy-making-software-change-successful`
@@ -66,16 +65,17 @@ The Loving Legacy page links to the show on Apple Podcasts and Spotify but does 
   - `bryan-finster-continuous-delivery-no-nonsense-podcast`
   - `podcast-making-it-software-more-sustainable-with-tom-kennes`
   - `observability-engineering-and-customer-needs-with-stephen-townsend`
-- **Talk/podcast entries incomplete from available pages:**
-  - `loving-legacy-podcast` — the source is a show archive, not episode records; individual episode titles, dates, links, and hosting role remain unconfirmed.
-  - `podcast-how-does-legacy-and-tech-debt-appear` — title, date, and description are available, but the original episode URL and hosting/appearance role are unconfirmed.
+- **Talk/podcast entries incomplete from available pages and therefore not listed:**
+  - `loving-legacy-podcast` — the source is a show archive, not episode records; individual episode titles, dates, links, and role remain unconfirmed.
+  - `podcast-how-does-legacy-and-tech-debt-appear` — title, date, and description are available, but the original episode URL and role remain unconfirmed.
 - **Paper:** `A Systems Approach to Software Product Delivery v1.1` — the source did not return a PDF, so the requested download is not present.
 
 ## Images and links
 
 - 21 article images were downloaded locally and are rendered through Astro’s `Image`; no image downloads failed. Two images that belonged to removed author-promotion blocks were discarded.
+- The About page uses the square portrait `richardwbown-london-rooftop-square-reduced.jpg` from the local `hardbittensoftie_website` project.
 - The source embeds in the migrated posts were preserved as links to their recorded YouTube or Speaker Deck embed URLs.
-- Checked same-site links found these destinations on the old site, but their pages are not part of this migration and will need a destination or redirect when the domain points at this build:
+- The following seven non-migrated same-site destinations were unlinked from article prose; their anchor text remains:
   - https://richardwbown.com/modern-software-leadership/ (the source link to `/beating-the-monolith-understanding-modern-software-delivery/` redirects here)
   - https://richardwbown.com/conways-law/
   - https://richardwbown.com/is-the-path-of-least-resistance-sometimes-the-right-choice/
