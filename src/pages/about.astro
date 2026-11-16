@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import profilePhoto from "../assets/richard-bown-profile.jpg";
+import { sitePath } from "../utils/site-url";
 
 const person = {
   "@context": "https://schema.org",
@@ -22,30 +23,69 @@ const person = {
       class="profile-photo"
       src={profilePhoto}
       alt="Richard Bown smiling outdoors in front of a brick wall."
-      width={320}
+      width={640}
+      loading="eager"
+      fetchpriority="high"
     />
     <section aria-labelledby="role-title">
       <h2 id="role-title">Role</h2>
-      <p>TODO: ABOUT_ROLE</p>
+      <p>Senior platform architect.</p>
     </section>
     <section aria-labelledby="focus-title">
       <h2 id="focus-title">Focus areas</h2>
-      <p>TODO: ABOUT_FOCUS_AREAS</p>
+      <ul class="post-list">
+        <li>Platform-as-a-product</li>
+        <li>Cognitive load</li>
+        <li>Socio-technical architecture</li>
+      </ul>
     </section>
     <section aria-labelledby="experience-title">
       <h2 id="experience-title">Experience</h2>
-      <p>TODO: ABOUT_EXPERIENCE</p>
+      <ul class="timeline-list">
+        <li><strong>Rabobank</strong> · Senior DevOps Engineer, 2026–</li>
+        <li>
+          <strong>Geosigns SI / Shell</strong> · Senior DevOps Engineer,
+          2023–2025
+        </li>
+        <li><strong>Carl Zeiss</strong> · Technical Product Owner, 2023</li>
+        <li>
+          <strong>Ahold Delhaize</strong> · Global Product Owner, GitHub,
+          2021–2022
+        </li>
+        <li>
+          <strong>Twinfield / Wolters Kluwer</strong> · Head of Engineering,
+          2019–2021
+        </li>
+        <li>
+          <strong>Nationale-Nederlanden</strong> · DevOps Coach &amp; Product
+          Owner, 2017–2019
+        </li>
+        <li>
+          <strong>Earlier · 1995–2017</strong> · Rabobank, JP Morgan, Swiss Re,
+          Shell, Philips, Bank of Ireland
+        </li>
+      </ul>
+      <h3>Credentials</h3>
+      <ul class="timeline-list">
+        <li>AWS Certified Solutions Architect (2021)</li>
+        <li>Team Topologies Advocate (2023–)</li>
+        <li>Leading SAFe (2019)</li>
+        <li>
+          MEng/BSc Electrical &amp; Electronic Engineering, University of Bath
+        </li>
+      </ul>
     </section>
     <section aria-labelledby="selected-work-title">
       <h2 id="selected-work-title">Selected work</h2>
-      <p>
-        TODO: ABOUT_SELECTED_WORK
-        <a href="https://AUTHOR_SITE_URL">AUTHOR_SITE_URL</a>
-      </p>
+      <p><a href={sitePath("#in-practice")}>In practice</a></p>
+      <p><a href="https://AUTHOR_SITE_URL">Novel site</a></p>
     </section>
     <section aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
-      <p>TODO: ABOUT_CONTACT</p>
+      <ul class="link-list">
+        <li><a href="mailto:me@richardwbown.com">me@richardwbown.com</a></li>
+        <li><a href="https://LINKEDIN_URL">LinkedIn URL TBD</a></li>
+      </ul>
     </section>
   </div>
 </BaseLayout>

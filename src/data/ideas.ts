@@ -5,10 +5,41 @@ export interface Idea {
 }
 
 export const ideas: Idea[] = [
-  { title: "TODO: IDEA_TITLE_1", summary: "TODO: IDEA_SUMMARY_1" },
-  { title: "TODO: IDEA_TITLE_2", summary: "TODO: IDEA_SUMMARY_2" },
-  { title: "TODO: IDEA_TITLE_3", summary: "TODO: IDEA_SUMMARY_3" },
-  { title: "TODO: IDEA_TITLE_4", summary: "TODO: IDEA_SUMMARY_4" },
-  { title: "TODO: IDEA_TITLE_5", summary: "TODO: IDEA_SUMMARY_5" },
-  { title: "TODO: IDEA_TITLE_6", summary: "TODO: IDEA_SUMMARY_6" }
+  {
+    title: "Platform as a product",
+    summary:
+      "Platform teams can start with existing systems and turn their capabilities into services that better support developers.",
+    relatedPost: "how-to-build-a-successful-platform-team"
+  },
+  {
+    title: "Reducing cognitive load",
+    summary:
+      "Cognitive load offers a way to understand team interactions and identify changes that can make team structures more realistic and effective.",
+    relatedPost: "avoiding-toxicity-how-to-manage-cognitive-load"
+  },
+  {
+    title: "Bounded contexts and flow",
+    summary:
+      "Bounded contexts can help teams define independent change and flow without requiring separate repositories or a microservices architecture.",
+    relatedPost: "do-bounded-contexts-and-domain-driven-design-even-matter"
+  },
+  {
+    title: "Hidden technical debt",
+    summary:
+      "Through Peter’s story, this article explores how underinvestment in legacy systems and technical debt affect software and the people maintaining it.",
+    relatedPost: "legacy-systems-and-the-cost-of-hidden-technical-debt"
+  },
+  {
+    title: "Residues of architecture over time",
+    summary:
+      "Barry O’Reilly’s Residues frames software architecture around criticality and how design choices endure amid time, change, and uncertainty.",
+    relatedPost:
+      "residues-time-change-and-uncertainty-in-software-architecture-barry-oreilly"
+  },
+  {
+    title: "Making systems visible",
+    summary:
+      "Context diagrams, DDD context maps, C4 diagrams and process canvases help teams see systems clearly and reason about potential changes.",
+    relatedPost: "how-to-visualise-your-systems"
+  }
 ];

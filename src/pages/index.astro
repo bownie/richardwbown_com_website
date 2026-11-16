@@ -41,11 +41,19 @@ const person = {
 >
   <div class="home-page">
     <section class="hero" aria-labelledby="hero-title">
-      <h1 class="hero-title" id="hero-title">TODO: HERO_STATEMENT</h1>
-      <p class="hero-intro">TODO: HERO_INTRO</p>
+      <h1 class="hero-title" id="hero-title">
+        Platforms should make the right thing the easy thing.
+      </h1>
+      <p class="hero-intro">
+        Senior platform architect with 30 years across banking, insurance and
+        complex enterprise environments. I work on platform-as-a-product,
+        cognitive load and socio-technical architecture, and I write about what
+        actually works. Team Topologies Advocate and contributor to the 2nd
+        edition.
+      </p>
       <ul class="hero-links" aria-label="Contact links">
-        <li><a href="https://LINKEDIN_URL">LinkedIn</a></li>
-        <li><a href="mailto:EMAIL">Email</a></li>
+        <li><a href="https://LINKEDIN_URL">LinkedIn URL TBD</a></li>
+        <li><a href="mailto:me@richardwbown.com">Email</a></li>
       </ul>
     </section>
 
@@ -107,6 +115,36 @@ const person = {
       </div>
     </section>
 
+    <section
+      class="home-section"
+      id="in-practice"
+      aria-labelledby="practice-title"
+    >
+      <header class="section-heading">
+        <p class="section-label">Selected work</p>
+        <h2 id="practice-title">In practice</h2>
+      </header>
+      <div class="practice-grid">
+        <article class="practice-card">
+          <p class="card-meta">Twinfield / Wolters Kluwer · 2019–2021</p>
+          <p>
+            Led engineering across NL, Kyiv and Pune (~100 developers, ~$5m
+            budget); implemented SOC2 controls leading to ISAE3402
+            accreditation; started the Kubernetes/microservices modernisation
+            of a 20-year-old SaaS platform.
+          </p>
+        </article>
+        <article class="practice-card">
+          <p class="card-meta">Ahold Delhaize · 2021–2022</p>
+          <p>
+            Global product owner for GitHub; defined DevOps and developer-tooling
+            standards across operating companies and was central contact for
+            the rollout to 2,500+ developers.
+          </p>
+        </article>
+      </div>
+    </section>
+
     {talksSectionVisible && (
       <section
         class="home-section"
@@ -120,8 +158,22 @@ const person = {
         <ul class="talk-list">
           {talks.map((talk) => (
             <li>
-              <h3><a href={talk.url}>{talk.title}</a></h3>
-              <p class="talk-meta">{talk.show} · {talk.date}</p>
+              <h3>
+                {talk.url && talk.title ? (
+                  <a href={talk.url}>{talk.title}</a>
+                ) : (
+                  talk.show
+                )}
+              </h3>
+              {(talk.date || talk.title) && (
+                <p class="talk-meta">
+                  {talk.show}
+                  {talk.date && ` · ${talk.date}`}
+                  {talk.role === "guest" && " · Podcast guest"}
+                  {talk.role === "speaker" && " · Speaker"}
+                  {talk.role === "host" && " · Podcast host"}
+                </p>
+              )}
             </li>
           ))}
         </ul>
@@ -134,7 +186,13 @@ const person = {
         <h2 id="about-title">About</h2>
       </header>
       <div class="about-short">
-        <p>TODO: ABOUT_SHORT</p>
+        <p>
+          Senior platform architect with 30 years across banking, insurance and
+          complex enterprise environments. I work on platform-as-a-product,
+          cognitive load and socio-technical architecture, and I write about
+          what actually works. Team Topologies Advocate and contributor to the
+          2nd edition.
+        </p>
         <a href={sitePath("about/")}>Full about page</a>
       </div>
     </section>
@@ -150,8 +208,8 @@ const person = {
       </header>
       <p class="perspective-copy">TODO: CONTACT_LINE</p>
       <ul class="contact-links">
-        <li><a href="mailto:EMAIL">Email</a></li>
-        <li><a href="https://LINKEDIN_URL">LinkedIn</a></li>
+        <li><a href="mailto:me@richardwbown.com">Email</a></li>
+        <li><a href="https://LINKEDIN_URL">LinkedIn URL TBD</a></li>
       </ul>
     </section>
   </div>

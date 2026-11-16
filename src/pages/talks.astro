@@ -22,8 +22,20 @@ const roleLabels = {
         <ul class="talk-list">
           {talks.map((item) => (
             <li>
-              <h3><a href={item.url}>{item.title}</a></h3>
-              <p>{item.show} · {item.date} · {roleLabels[item.role]}</p>
+              <h3>
+                {item.url && item.title ? (
+                  <a href={item.url}>{item.title}</a>
+                ) : (
+                  item.show
+                )}
+              </h3>
+              {(item.title || item.date) && (
+                <p>
+                  {item.show}
+                  {item.date && ` · ${item.date}`}
+                  {` · ${roleLabels[item.role]}`}
+                </p>
+              )}
             </li>
           ))}
         </ul>

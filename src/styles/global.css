@@ -303,7 +303,8 @@ main {
 }
 
 .writing-grid,
-.ideas-grid {
+.ideas-grid,
+.practice-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-2);
@@ -314,7 +315,8 @@ main {
 }
 
 .writing-card,
-.idea-card {
+.idea-card,
+.practice-card {
   min-width: 0;
   padding: clamp(1.25rem, 2.5vw, 2rem);
   border: 1px solid var(--border);
@@ -345,8 +347,26 @@ main {
 }
 
 .writing-card p,
-.idea-card p {
+.idea-card p,
+.practice-card p {
   color: var(--muted);
+}
+
+.practice-card p:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-list {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-list li {
+  padding-block: var(--space-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .card-meta {
@@ -558,6 +578,10 @@ time {
   }
 
   .about-short {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-grid {
     grid-template-columns: 1fr;
   }
 }
