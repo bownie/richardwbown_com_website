@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
+import { sitePath } from "../utils/site-url";
 
 export const GET: APIRoute = async (context) => {
   const posts = await getCollection("posts");
@@ -17,7 +18,7 @@ export const GET: APIRoute = async (context) => {
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.summary,
-      link: `/${post.id.replace(/\.mdx?$/, "")}/`
+      link: sitePath(`${post.id.replace(/\.mdx?$/, "")}/`)
     }))
   });
 };

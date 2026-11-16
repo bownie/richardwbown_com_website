@@ -2,7 +2,23 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
-const redirects = {
+const siteMode = process.env.SITE_MODE ?? "production";
+
+if (siteMode !== "preview" && siteMode !== "production") {
+  throw new Error('SITE_MODE must be either "preview" or "production".');
+}
+
+const site =
+  siteMode === "preview"
+    ? "https://bownie.github.io"
+    : "https://richardwbown.com";
+const configuredBase =
+  process.env.BASE_PATH ||
+  (siteMode === "preview" ? "/richardwbown_com_website/" : "/");
+const baseSegments = configuredBase.split("/").filter(Boolean);
+const base = `/${baseSegments.join("/")}${baseSegments.length ? "/" : ""}`;
+
+const redirectDestinations = {
   "/team-topologies/": "/the-real-value-of-team-topologies/",
   "/defining-the-bounded-context-is-the-key-to-flow/":
     "/do-bounded-contexts-and-domain-driven-design-even-matter/",
@@ -34,8 +50,16 @@ const redirects = {
   "/we-are-developers-world-congress-2023/": "/talks/"
 };
 
+const redirects = Object.fromEntries(
+  Object.entries(redirectDestinations).map(([source, destination]) => [
+    source,
+    `${base}${destination.replace(/^\/+/, "")}`
+  ])
+);
+
 export default defineConfig({
-  site: "https://richardwbown.com",
+  site,
+  base,
   output: "static",
   trailingSlash: "always",
   integrations: [mdx(), sitemap()],

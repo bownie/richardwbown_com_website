@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}
+      SITE_MODE: ${{ vars.SITE_MODE || 'preview' }}
+      BASE_PATH: ${{ vars.BASE_PATH }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -39,6 +41,10 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: Omit custom domain for project preview
+        if: vars.SITE_MODE != 'production'
+        run: rm -f dist/CNAME
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

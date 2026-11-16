@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from "../utils/site-url";
 
 const allPosts = await getCollection("posts");
 const postsBySlug = new Map(
@@ -25,7 +26,7 @@ const person = {
 <BaseLayout
   title="Richard W. Bown — Software Architect"
   description="Writing and appearances on software architecture, platform engineering, and software delivery."
-  canonicalPath="/"
+  canonicalPath=""
   structuredData={person}
 >
   <section aria-labelledby="intro-title">
@@ -36,10 +37,10 @@ const person = {
       systems. This site brings together selected writing, talks, and podcasts.
     </p>
     <ul class="link-list" aria-label="Explore">
-      <li><a href="/writing/">Writing</a></li>
-      <li><a href="/talks/">Talks &amp; Podcasts</a></li>
-      <li><a href="/about/">About</a></li>
-      <li><a href="/contact/">Contact</a></li>
+      <li><a href={sitePath("writing/")}>Writing</a></li>
+      <li><a href={sitePath("talks/")}>Talks &amp; Podcasts</a></li>
+      <li><a href={sitePath("about/")}>About</a></li>
+      <li><a href={sitePath("contact/")}>Contact</a></li>
     </ul>
   </section>
 
@@ -48,11 +49,13 @@ const person = {
     <ul class="post-list">
       {highlights.map((post) => (
         <li>
-          <a href={`/${post.id.replace(/\.mdx?$/, "")}/`}>{post.data.title}</a>
+          <a href={sitePath(`${post.id.replace(/\.mdx?$/, "")}/`)}>
+            {post.data.title}
+          </a>
           <p class="post-summary">{post.data.summary}</p>
         </li>
       ))}
     </ul>
-    <p><a href="/writing/">All writing</a></p>
+    <p><a href={sitePath("writing/")}>All writing</a></p>
   </section>
 </BaseLayout>

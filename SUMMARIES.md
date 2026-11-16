@@ -1,0 +1,24 @@
+# Post summaries
+
+These are the one-sentence summaries used in post frontmatter, the home page, Writing, meta descriptions, and RSS.
+
+| Post | Summary |
+| --- | --- |
+| [Are Relational Databases still important in the Age of NoSQL?](src/content/posts/are-relational-databases-still-important-in-the-age-of-nosql.mdx) | Relational databases remain useful for common workloads, while NoSQL systems offer distinct trade-offs for more specific data needs. |
+| [Avoiding Toxicity: How to Manage Cognitive Load](src/content/posts/avoiding-toxicity-how-to-manage-cognitive-load.mdx) | Cognitive load offers a way to understand team interactions and identify changes that can make team structures more realistic and effective. |
+| [Brittle Systems](src/content/posts/brittle-systems.mdx) | Automating and connecting business systems can make them brittle, so the article argues for weighing each integration against its value. |
+| [Build Now vs Build Later: Upfront Design vs Implementation Costs](src/content/posts/build-now-vs-build-later-upfront-design-vs-implementation-costs.mdx) | Comparing different levels of upfront design, the article argues that later change brings costs regardless of where implementation begins. |
+| [Do Bounded Contexts and Domain Driven Design even matter?](src/content/posts/do-bounded-contexts-and-domain-driven-design-even-matter.mdx) | Bounded contexts can help teams define independent change and flow without requiring separate repositories or a microservices architecture. |
+| [Emergent Architecture and Beating the Monolith](src/content/posts/emergent-architecture-and-beating-the-monolith.mdx) | Rather than treating monoliths as something to defeat, the episode considers how to support and extend systems as architecture emerges. |
+| [How To Build a Successful Platform Team](src/content/posts/how-to-build-a-successful-platform-team.mdx) | Platform teams can start with existing systems and turn their capabilities into services that better support developers. |
+| [How to Visualise Your Systems](src/content/posts/how-to-visualise-your-systems.mdx) | Context diagrams, DDD context maps, C4 diagrams and process canvases help teams see systems clearly and reason about potential changes. |
+| [John Romero’s Ten Principles for Building Great Software](src/content/posts/john-romeros-ten-principles-for-building-great-software.mdx) | John Romero’s ten game-development principles emphasize simple code, continuous testing, maintainability, and collaboration. |
+| [Legacy Systems and the Cost of Hidden Technical Debt](src/content/posts/legacy-systems-and-the-cost-of-hidden-technical-debt.mdx) | Through Peter’s story, this article explores how underinvestment in legacy systems and technical debt affect software and the people maintaining it. |
+| [Monitoring Azure DevOps Build Pipelines with Prometheus and Grafana](src/content/posts/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana.mdx) | A practical guide to monitoring Azure DevOps build agents and pipelines with Prometheus and Grafana. |
+| [Residues: Time, Change, and Uncertainty in Software Architecture – Barry O’Reilly](src/content/posts/residues-time-change-and-uncertainty-in-software-architecture-barry-oreilly.mdx) | Barry O’Reilly’s Residues frames software architecture around criticality and how design choices endure amid time, change, and uncertainty. |
+| [Architecture for Flow by Susanne Kaiser](src/content/posts/susanne-kaiser-architecture-for-flow.mdx) | Susanne Kaiser brings Wardley Mapping, Domain-Driven Design and Team Topologies together in an approach to architecture for flow. |
+| [Test-Driven Development for Microservices](src/content/posts/test-driven-development-for-microservices.mdx) | The article examines testing boundaries and test-driven development for microservices, and argues for applying a consistent testing strategy. |
+| [That One Script You Wrote is a now a Platform](src/content/posts/that-one-script-you-wrote-is-a-now-a-platform.mdx) | A talk on Conway’s Law argues that scripts and platform work benefit from treating internal services as products for developers. |
+| [The Magic of Wardley Maps](src/content/posts/the-magic-of-wardley-maps.mdx) | Wardley Maps make strategy visible by mapping how technologies evolve from innovation to commodity and how that affects customer value. |
+| [The Real Value of Team Topologies](src/content/posts/the-real-value-of-team-topologies.mdx) | Team Topologies’ value, the article argues, lies in its human principles and minimal change rather than a prescriptive framework or reorganisation. |
+| [What you need to know before running a Backstage Proof of Concept](src/content/posts/what-you-need-to-know-before-running-a-backstage-proof-of-concept.mdx) | A Backstage proof of concept should test whether its integration work, required skills, and catalog model fit your organisation and teams. |

@@ -1,17 +1,29 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from "../utils/site-url";
 ---
 
 <BaseLayout
   title="Page not found — Richard W. Bown"
   description="The page you requested could not be found."
-  canonicalPath="/404.html"
-  noIndex={true}
+  canonicalPath="404.html"
 >
   <h1>Page not found</h1>
   <p>The page you requested could not be found.</p>
   <ul class="link-list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/writing/">Writing</a></li>
+    <li><a href={sitePath("")}>Home</a></li>
+    <li><a href={sitePath("writing/")}>Writing</a></li>
   </ul>
 </BaseLayout>
+
+<script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
+  const basePath = new URL(baseUrl, location.origin).pathname;
+  const escapedBase = basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const legacyArchive = new RegExp(
+    `^${escapedBase}(?:author|tag|category)/.+$`
+  );
+
+  if (legacyArchive.test(location.pathname)) {
+    location.replace(`${baseUrl}writing/`);
+  }
+</script>

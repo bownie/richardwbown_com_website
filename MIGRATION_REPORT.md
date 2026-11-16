@@ -53,6 +53,24 @@ The Loving Legacy page links to the show on Apple Podcasts and Spotify but does 
 | https://richardwbown.com/about/ | 301 to https://richardwbownauthor.com/; destination returned 200 | About uses the available “Writer · software engineer” and three-decades-in-corporate-IT copy. Role, employers, dates, and current architecture biography remain marked TODO rather than inferred. |
 | https://richardwbown.com/wp-content/uploads/2022/08/A-Systems-Approach-to-Software-Product-Delivery-v1.1-Richard-Bown.pdf | Direct request returned 403; a browser-style request returned 200 but redirected to the site homepage as HTML | No PDF was saved or linked. The Papers section has a TODO so it does not point to a broken/non-PDF file. |
 
+## Requested items still missing
+
+- **Post:** `do-you-need-to-build-an-internal-developer-platform` — source URL returned 404.
+- **Talk/podcast entries with no source page (404):**
+  - `se-radio-podcast-the-differences-between-devops-vs-sre`
+  - `lovin-legacy-podcast-the-business-of-legacy-making-software-change-successful`
+  - `lovin-legacy-podcast-jonathan-hall-devops-go-and-continuous-delivery-in-reverse`
+  - `software-delivery-club-pod-getting-your-evenings-and-weekends-back`
+  - `software-delivery-club-pod-between-product-and-engineering`
+  - `can-software-engineers-fix-the-world-podcast-with-gene-kim`
+  - `bryan-finster-continuous-delivery-no-nonsense-podcast`
+  - `podcast-making-it-software-more-sustainable-with-tom-kennes`
+  - `observability-engineering-and-customer-needs-with-stephen-townsend`
+- **Talk/podcast entries incomplete from available pages:**
+  - `loving-legacy-podcast` — the source is a show archive, not episode records; individual episode titles, dates, links, and hosting role remain unconfirmed.
+  - `podcast-how-does-legacy-and-tech-debt-appear` — title, date, and description are available, but the original episode URL and hosting/appearance role are unconfirmed.
+- **Paper:** `A Systems Approach to Software Product Delivery v1.1` — the source did not return a PDF, so the requested download is not present.
+
 ## Images and links
 
 - 21 article images were downloaded locally and are rendered through Astro’s `Image`; no image downloads failed. Two images that belonged to removed author-promotion blocks were discarded.

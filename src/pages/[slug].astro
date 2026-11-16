@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from "../utils/site-url";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -12,7 +13,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const canonicalPath = `/${post.id.replace(/\.mdx?$/, "")}/`;
+const canonicalPath = `${post.id.replace(/\.mdx?$/, "")}/`;
+const canonicalUrl = new URL(sitePath(canonicalPath), Astro.site).href;
 const modified = post.data.updated ?? post.data.date;
 const article = {
   "@context": "https://schema.org",
@@ -25,7 +27,7 @@ const article = {
     "@type": "Person",
     name: "Richard W. Bown"
   },
-  mainEntityOfPage: new URL(canonicalPath, Astro.site).href
+  mainEntityOfPage: canonicalUrl
 };
 ---
 
@@ -67,6 +69,6 @@ const article = {
     <div class="post-content">
       <Content />
     </div>
-    <p class="muted"><a href="/writing/">Back to Writing</a></p>
+    <p class="muted"><a href={sitePath("writing/")}>Back to Writing</a></p>
   </article>
 </BaseLayout>

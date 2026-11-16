@@ -1,4 +1,6 @@
 ---
+import { sitePath } from "../utils/site-url";
+
 interface Props {
   title: string;
   description: string;
@@ -6,7 +8,6 @@ interface Props {
   ogType?: "website" | "article";
   publishedTime?: string;
   structuredData?: Record<string, unknown>;
-  noIndex?: boolean;
 }
 
 const {
@@ -15,10 +16,11 @@ const {
   canonicalPath,
   ogType = "website",
   publishedTime,
-  structuredData,
-  noIndex = false
+  structuredData
 } = Astro.props;
-const canonical = new URL(canonicalPath, Astro.site);
+const site = Astro.site ?? new URL("https://richardwbown.com");
+const isPreview = site.hostname !== "richardwbown.com";
+const canonical = new URL(sitePath(canonicalPath), site);
 const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 
@@ -27,9 +29,10 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={sitePath("favicon.svg")} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {isPreview && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
@@ -67,12 +70,12 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="site-name" href="/">Richard W. Bown</a>
+      <a class="site-name" href={sitePath("")}>Richard W. Bown</a>
       <nav aria-label="Main navigation">
-        <a href="/writing/">Writing</a>
-        <a href="/talks/">Talks &amp; Podcasts</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
+        <a href={sitePath("writing/")}>Writing</a>
+        <a href={sitePath("talks/")}>Talks &amp; Podcasts</a>
+        <a href={sitePath("about/")}>About</a>
+        <a href={sitePath("contact/")}>Contact</a>
       </nav>
     </header>
     <main id="main">
