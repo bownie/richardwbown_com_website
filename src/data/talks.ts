@@ -26,5 +26,4 @@ export const talks: Talk[] = [
   }
 ];
 
-export const showTalks =
-  talks.length >= 3 || process.env.SHOW_TALKS === "true";
+export const showTalks = process.env.SHOW_TALKS === "true";

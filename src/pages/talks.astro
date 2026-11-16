@@ -14,18 +14,20 @@ const roleLabels = {
   description="Selected conference talk and podcast appearances by Richard W. Bown."
   canonicalPath="talks/"
 >
-  <h1>Talks &amp; Podcasts</h1>
-  {talks.length > 0 && (
-    <section aria-labelledby="appearances-title">
-      <h2 id="appearances-title">Public appearances</h2>
-      <ul class="appearance-list">
-        {talks.map((item) => (
-          <li>
-            <h3><a href={item.url}>{item.title}</a></h3>
-            <p>{item.show} · {item.date} · {roleLabels[item.role]}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
+  <div class="reading-layout">
+    <h1>Talks &amp; Podcasts</h1>
+    {talks.length > 0 && (
+      <section aria-labelledby="appearances-title">
+        <h2 id="appearances-title">Public appearances</h2>
+        <ul class="talk-list">
+          {talks.map((item) => (
+            <li>
+              <h3><a href={item.url}>{item.title}</a></h3>
+              <p>{item.show} · {item.date} · {roleLabels[item.role]}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
 </BaseLayout>

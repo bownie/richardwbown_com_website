@@ -28,35 +28,37 @@ const hasPaper = existsSync(paperPath);
   description="Selected writing on software architecture, platform engineering, and delivery and systems thinking."
   canonicalPath="writing/"
 >
-  <h1>Writing</h1>
-  <p class="lede">A selection of writing on software and the systems around it.</p>
-  {groupedPosts.map(({ category, posts: categoryPosts }) => (
-    <section aria-labelledby={`category-${category}`}>
-      <h2 id={`category-${category}`}>{category}</h2>
-      <ul class="post-list">
-        {categoryPosts.map((post) => (
-          <li>
-            <a href={sitePath(`${post.id.replace(/\.mdx?$/, "")}/`)}>
-              {post.data.title}
-            </a>
-            <p class="post-meta">
-              <time datetime={post.data.date.toISOString()}>
-                {post.data.date.toLocaleDateString("en-GB", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                  timeZone: "UTC"
-                })}
-              </time>
-            </p>
-            <p class="post-summary">{post.data.summary}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
-  ))}
+  <div class="reading-layout">
+    <h1>Writing</h1>
+    <p class="lede">A selection of writing on software and the systems around it.</p>
+    {groupedPosts.map(({ category, posts: categoryPosts }) => (
+      <section aria-labelledby={`category-${category}`}>
+        <h2 id={`category-${category}`}>{category}</h2>
+        <ul class="post-list">
+          {categoryPosts.map((post) => (
+            <li>
+              <a href={sitePath(`${post.id.replace(/\.mdx?$/, "")}/`)}>
+                {post.data.title}
+              </a>
+              <p class="post-meta">
+                <time datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    timeZone: "UTC"
+                  })}
+                </time>
+              </p>
+              <p class="post-summary">{post.data.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
   {hasPaper && (
-    <section aria-labelledby="papers-title">
+    <section class="reading-layout" aria-labelledby="papers-title">
       <h2 id="papers-title">Papers</h2>
       <ul class="post-list">
         <li>

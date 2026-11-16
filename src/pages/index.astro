@@ -1,14 +1,15 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { ideas } from "../data/ideas";
+import { talks } from "../data/talks";
 import { sitePath } from "../utils/site-url";
-import { showTalks } from "../data/talks";
 
-const allPosts = await getCollection("posts");
+const posts = await getCollection("posts");
 const postsBySlug = new Map(
-  allPosts.map((post) => [post.id.replace(/\.mdx?$/, ""), post])
+  posts.map((post) => [post.id.replace(/\.mdx?$/, ""), post])
 );
-const highlights = [
+const featuredPosts = [
   "residues-time-change-and-uncertainty-in-software-architecture-barry-oreilly",
   "susanne-kaiser-architecture-for-flow",
   "what-you-need-to-know-before-running-a-backstage-proof-of-concept",
@@ -16,7 +17,15 @@ const highlights = [
   "legacy-systems-and-the-cost-of-hidden-technical-debt"
 ]
   .map((slug) => postsBySlug.get(slug))
-  .filter((post) => post !== undefined);
+  .filter((post) => post !== undefined)
+  .map((post) => ({
+    post,
+    readingMinutes: Math.max(
+      1,
+      Math.ceil((post.body?.trim().split(/\s+/).length ?? 0) / 220)
+    )
+  }));
+const talksSectionVisible = talks.length >= 3;
 const person = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -30,35 +39,120 @@ const person = {
   canonicalPath=""
   structuredData={person}
 >
-  <section aria-labelledby="intro-title">
-    <h1 id="intro-title">Richard W. Bown</h1>
-    <p class="lede">Senior software architect working across platform engineering and software delivery.</p>
-    <p>
-      I write about software architecture, platform engineering, and delivery
-      systems. This site brings together selected writing, talks, and podcasts.
-    </p>
-    <ul class="link-list" aria-label="Explore">
-      <li><a href={sitePath("writing/")}>Writing</a></li>
-      {showTalks && (
-        <li><a href={sitePath("talks/")}>Talks &amp; Podcasts</a></li>
-      )}
-      <li><a href={sitePath("about/")}>About</a></li>
-      <li><a href={sitePath("contact/")}>Contact</a></li>
-    </ul>
-  </section>
+  <div class="home-page">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 class="hero-title" id="hero-title">TODO: HERO_STATEMENT</h1>
+      <p class="hero-intro">TODO: HERO_INTRO</p>
+      <ul class="hero-links" aria-label="Contact links">
+        <li><a href="https://LINKEDIN_URL">LinkedIn</a></li>
+        <li><a href="mailto:EMAIL">Email</a></li>
+      </ul>
+    </section>
 
-  <section aria-labelledby="highlights-title">
-    <h2 id="highlights-title">Selected writing</h2>
-    <ul class="post-list">
-      {highlights.map((post) => (
-        <li>
-          <a href={sitePath(`${post.id.replace(/\.mdx?$/, "")}/`)}>
-            {post.data.title}
-          </a>
-          <p class="post-summary">{post.data.summary}</p>
-        </li>
-      ))}
-    </ul>
-    <p><a href={sitePath("writing/")}>All writing</a></p>
-  </section>
+    <section
+      class="home-section"
+      id="perspective"
+      aria-labelledby="perspective-title"
+    >
+      <header class="section-heading">
+        <p class="section-label">Point of view</p>
+        <h2 id="perspective-title">Perspective</h2>
+      </header>
+      <div class="perspective-copy">
+        <p>TODO: PERSPECTIVE_TEXT</p>
+        <p>TODO: PERSPECTIVE_TEXT</p>
+        <p>TODO: PERSPECTIVE_TEXT</p>
+      </div>
+    </section>
+
+    <section class="home-section" id="writing" aria-labelledby="writing-title">
+      <header class="section-heading">
+        <p class="section-label">Writing</p>
+        <h2 id="writing-title">Selected writing</h2>
+      </header>
+      <div class="writing-grid">
+        {featuredPosts.map(({ post, readingMinutes }) => (
+          <article class="writing-card">
+            <p class="card-meta">About {readingMinutes} min read</p>
+            <h3>
+              <a href={sitePath(`${post.id.replace(/\.mdx?$/, "")}/`)}>
+                {post.data.title}
+              </a>
+            </h3>
+            <p>{post.data.summary}</p>
+          </article>
+        ))}
+      </div>
+      <a class="all-writing" href={sitePath("writing/")}>All writing →</a>
+    </section>
+
+    <section class="home-section" id="ideas" aria-labelledby="ideas-title">
+      <header class="section-heading">
+        <p class="section-label">Ideas</p>
+        <h2 id="ideas-title">Ideas</h2>
+      </header>
+      <div class="ideas-grid">
+        {ideas.map((idea) => (
+          <article class="idea-card">
+            <h3>
+              {idea.relatedPost ? (
+                <a href={sitePath(`${idea.relatedPost}/`)}>{idea.title}</a>
+              ) : (
+                idea.title
+              )}
+            </h3>
+            <p>{idea.summary}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {talksSectionVisible && (
+      <section
+        class="home-section"
+        id="talks"
+        aria-labelledby="talks-title"
+      >
+        <header class="section-heading">
+          <p class="section-label">Talks &amp; podcasts</p>
+          <h2 id="talks-title">Public appearances</h2>
+        </header>
+        <ul class="talk-list">
+          {talks.map((talk) => (
+            <li>
+              <h3><a href={talk.url}>{talk.title}</a></h3>
+              <p class="talk-meta">{talk.show} · {talk.date}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="home-section" id="about" aria-labelledby="about-title">
+      <header class="section-heading">
+        <p class="section-label">Profile</p>
+        <h2 id="about-title">About</h2>
+      </header>
+      <div class="about-short">
+        <p>TODO: ABOUT_SHORT</p>
+        <a href={sitePath("about/")}>Full about page</a>
+      </div>
+    </section>
+
+    <section
+      class="home-section contact-section"
+      id="contact"
+      aria-labelledby="contact-title"
+    >
+      <header class="section-heading">
+        <p class="section-label">Contact</p>
+        <h2 id="contact-title">Get in touch</h2>
+      </header>
+      <p class="perspective-copy">TODO: CONTACT_LINE</p>
+      <ul class="contact-links">
+        <li><a href="mailto:EMAIL">Email</a></li>
+        <li><a href="https://LINKEDIN_URL">LinkedIn</a></li>
+      </ul>
+    </section>
+  </div>
 </BaseLayout>

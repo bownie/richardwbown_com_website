@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { showTalks } from "./src/data/talks.ts";
+import { talks } from "./src/data/talks.ts";
 
 const siteMode = process.env.SITE_MODE ?? "production";
 
@@ -18,6 +18,7 @@ const configuredBase =
   (siteMode === "preview" ? "/richardwbown_com_website/" : "/");
 const baseSegments = configuredBase.split("/").filter(Boolean);
 const base = `/${baseSegments.join("/")}${baseSegments.length ? "/" : ""}`;
+const talksPageVisible = talks.length >= 3;
 
 const redirectDestinations = {
   "/team-topologies/": "/the-real-value-of-team-topologies/",
@@ -67,7 +68,7 @@ export default defineConfig({
     mdx(),
     sitemap({
       filter: (page) =>
-        showTalks || !page.endsWith(`${base}talks/`)
+        talksPageVisible || !page.endsWith(`${base}talks/`)
     })
   ],
   redirects
