@@ -32,6 +32,7 @@
     sans-serif;
   --content-width: 1100px;
   --reading-width: 65ch;
+  --hero-width: var(--content-width);
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -156,7 +157,7 @@ ol {
 
 .header-inner {
   display: flex;
-  width: min(calc(100% - 3rem), var(--reading-width));
+  width: min(calc(100% - 3rem), var(--hero-width));
   min-height: var(--header-height);
   align-items: center;
   justify-content: space-between;
@@ -176,7 +177,7 @@ ol {
 .mobile-nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(0.7rem, 1.7vw, 1.5rem);
+  gap: clamp(0.5rem, 1vw, 0.875rem);
 }
 
 .desktop-nav a,
@@ -243,31 +244,34 @@ main {
 }
 
 .hero {
-  padding-block: clamp(2rem, 6vw, 4rem);
+  padding-block: clamp(1.5rem, 4vw, 3rem);
 }
 
-.hero-content {
-  width: min(100%, var(--reading-width));
+.hero .reading-layout {
+  width: min(100%, var(--hero-width));
+  padding-block: 0;
   margin-inline: auto;
 }
 
 .hero-title {
-  max-width: 12ch;
+  width: 100%;
   font-size: clamp(3.2rem, 9vw, 7.5rem);
   line-height: 0.99;
   overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .hero-intro {
-  max-width: 58ch;
-  margin-block: var(--space-2);
+  width: min(100%, var(--hero-width));
+  margin: var(--space-2) auto;
   color: var(--muted);
   font-size: clamp(1.15rem, 2.2vw, 1.45rem);
   line-height: 1.55;
 }
 
 .hero .profile-photo {
-  margin-block: var(--space-1);
+  display: block;
+  margin: var(--space-6) auto;
 }
 
 .hero-links,
@@ -275,6 +279,11 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1) var(--space-3);
+}
+
+.hero-links {
+  width: min(100%, var(--hero-width));
+  margin-inline: auto;
 }
 
 .hero-links a,
@@ -558,7 +567,7 @@ time {
 
 @media (max-width: 720px) {
   .header-inner {
-    width: min(calc(100% - 2rem), var(--reading-width));
+    width: min(calc(100% - 2rem), var(--hero-width));
   }
 
   .desktop-nav {

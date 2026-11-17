@@ -45,35 +45,31 @@ const person = {
 >
   <div class="home-page">
     <section class="hero" aria-labelledby="hero-title">
-        <div class="reading-layout">
+      <div class="hero-content">
         <h1 class="hero-title" id="hero-title">
-          Making platforms right.
+          Platforms, infrastructure and the people who use them
         </h1>
         <Image
-            class="profile-photo"
-            src={profilePhoto}
-            alt="Richard Bown smiling outdoors in front of a brick wall."
-            width={640}
-            loading="eager"
-            fetchpriority="high"
-          />
-        </div>
-
-      <p class="hero-intro">
-        Hello, I'm Richard. I'm a senior platform architect with 30 years across banking,
-        insurance and complex enterprise environments. I work on infrastructure across AWS,
-        GCP, Azure, platform-as-a-product, cognitive load and socio-technical architecture,
-        and I write about what
-        actually works. Team Topologies Advocate and contributor to the 2nd edition.
-      </p>
-
-      <p>
-
-      </p>
-      <ul class="hero-links" aria-label="Contact links">
-        <li><a href={socialLinks.linkedin}>LinkedIn</a></li>
-        <li><a href={socialLinks.bluesky}>Bluesky</a></li>
-      </ul>
+          class="profile-photo"
+          src={profilePhoto}
+          alt="Richard Bown smiling outdoors in front of a brick wall."
+          width={640}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <p class="hero-intro">
+          Hello, I'm Richard. I'm a hands-on, senior platform architect with
+          30 years experience across banking, insurance and complex enterprise
+          environments. I work on infrastructure across AWS, GCP, Azure,
+          platform-as-a-product, cognitive load and socio-technical architecture,
+          and I occasonally write about what works and what doesn't work. I'm also a
+          Team Topologies Advocate and contributor to the 2nd edition of the book.
+        </p>
+        <ul class="hero-links" aria-label="Contact links">
+          <li><a href={socialLinks.linkedin}>LinkedIn</a></li>
+          <li><a href={socialLinks.bluesky}>Bluesky</a></li>
+        </ul>
+      </div>
     </section>
 
     <section
@@ -86,9 +82,11 @@ const person = {
         <h2 id="perspective-title">Perspective</h2>
       </header>
       <div class="perspective-copy">
-        <p>TODO: PERSPECTIVE_TEXT</p>
-        <p>TODO: PERSPECTIVE_TEXT</p>
-        <p>TODO: PERSPECTIVE_TEXT</p>
+        <p>Making platforms the logical choice.</p>
+        <p>Picking infrastructure by workload, not ideology</p>
+        <p>The hard problems are rarely technical. They’re cognitive load,
+          unclear boundaries, and the slow accumulation of decisions nobody
+          revisited.</p>
       </div>
     </section>
 
@@ -225,7 +223,7 @@ const person = {
         <p class="section-label">Contact</p>
         <h2 id="contact-title">Get in touch</h2>
       </header>
-      <p class="perspective-copy">TODO: CONTACT_LINE</p>
+      <p class="perspective-copy">If you’re working on platform strategy, developer experience or engineering culture, I’m happy to talk.</p>
       <ul class="contact-links">
         <li><a href={socialLinks.linkedin}>LinkedIn</a></li>
         <li><a href={socialLinks.bluesky}>Bluesky</a></li>
