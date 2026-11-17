@@ -253,17 +253,17 @@ main {
 
 .hero-title {
   width: 100%;
-  font-size: clamp(3.2rem, 9vw, 7.5rem);
+  font-size: clamp(3.2rem, 1vw, 3.5rem);
   line-height: 0.99;
   overflow-wrap: anywhere;
-  text-align: left;
+  text-align: center;
 }
 
 .hero-intro {
   width: min(100%, var(--hero-width));
   margin: var(--space-2) auto;
   color: var(--muted);
-  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-size: clamp(1.15rem, 2.2vw, 1.0rem);
   line-height: 1.55;
 }
 
