@@ -17,15 +17,17 @@ SITE_MODE=preview npm run build
 npm run preview
 ```
 
-The static site is generated in `dist/`. A GitHub Actions workflow runs the project checks and deploys successful builds from `main` to a GitHub Pages preview. In repository settings, enable Pages with **GitHub Actions** as the build and deployment source.
+The static site is generated in `dist/`. A GitHub Actions workflow runs the project checks and deploys successful builds from `main` to GitHub Pages. Pull requests build in preview mode but are not deployed. In repository settings, enable Pages with **GitHub Actions** as the build and deployment source.
 
-`SITE_MODE=preview` builds for `https://bownie.github.io/richardwbown_com_website/`, adds `noindex`, and sets canonicals to that preview URL. `SITE_MODE=production` builds for `https://richardwbown.com/` without `noindex`. `BASE_PATH` optionally overrides the base path; it defaults to `/richardwbown_com_website/` in preview mode and `/` in production mode. Set the optional `PUBLIC_GA_ID` repository variable to enable GA4. The home Talks section and sitemap entry appear with at least three confirmed appearances; the navigation link appears only when that threshold is met and `SHOW_TALKS=true`.
+`SITE_MODE=preview` builds for `https://bownie.github.io/richardwbown_com_website/`, adds `noindex`, and sets canonicals to that preview URL. `SITE_MODE=production` builds for `https://richardwbown.com/` without `noindex`. The workflow uses the preview base path only for pull requests and `/` for the live deployment. Set the optional `PUBLIC_GA_ID` repository variable to enable GA4. The home Talks section and sitemap entry appear with at least three confirmed appearances; the navigation link appears only when that threshold is met and `SHOW_TALKS=true`.
 
 ## Deployment
 
-GitHub Pages is for the noindex preview only. It does not process `public/_redirects`, and Astro's static redirect pages do not return HTTP 301 responses. The GitHub Pages workflow therefore always builds preview mode and omits the custom-domain file.
+The production workflow preserves `public/CNAME` and deploys the site at `https://richardwbown.com/`. Configure `richardwbown.com` as the custom domain in the repository's Pages settings, point the domain's DNS to GitHub Pages, and enable **Enforce HTTPS** once GitHub has verified the domain. Keep the domain's recommended apex A/AAAA records and an optional `www` CNAME in place so GitHub can route and redirect both hostnames.
 
-For production, build with `SITE_MODE=production` and deploy `dist/` to a host that reads `public/_redirects`, such as Cloudflare Pages or Netlify. Those host-level rules are required for the requested 301 redirects and wildcard paths. Configure the production domain and DNS with the chosen host. The build checks for unresolved copy placeholders: preview builds warn and list them, while production builds stop until they are replaced.
+GitHub Pages does not read `public/_redirects` and cannot issue server-side HTTP 301 responses. Exact redirects in `astro.config.mjs` are emitted by Astro as static redirect pages (instant meta refresh, canonical, and fallback link); nested `/author/`, `/tag/`, and `/category/` paths are routed from the custom 404 page with client-side JavaScript. These work on GitHub Pages but are not equivalent to server-side 301s, and wildcard redirects require JavaScript. If true HTTP 301s or reliable wildcard redirects without JavaScript are required, use a host or edge service that supports redirect rules.
+
+The build checks for unresolved copy placeholders: preview builds warn and list them, while production builds stop until they are replaced.
 
 ## Configuration
 

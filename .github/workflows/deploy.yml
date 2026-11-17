@@ -23,8 +23,8 @@ jobs:
       PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}
       LINKEDIN_URL: ${{ vars.LINKEDIN_URL || 'https://www.linkedin.com/in/richard-bown/' }}
       BLUESKY_URL: ${{ vars.BLUESKY_URL || 'https://bsky.app/profile/bownie.bsky.social' }}
-      SITE_MODE: preview
-      BASE_PATH: ${{ vars.BASE_PATH || '/richardwbown_com_website/' }}
+      SITE_MODE: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+      BASE_PATH: ${{ github.event_name == 'pull_request' && '/richardwbown_com_website/' || '/' }}
       SHOW_TALKS: ${{ vars.SHOW_TALKS }}
     steps:
       - name: Check out repository
@@ -44,9 +44,6 @@ jobs:
 
       - name: Build site
         run: npm run build
-
-      - name: Omit custom domain for project preview
-        run: rm -f dist/CNAME
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
