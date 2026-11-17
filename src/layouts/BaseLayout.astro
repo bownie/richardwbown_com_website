@@ -2,6 +2,7 @@
 import frauncesFont from "../assets/fonts/Fraunces-Variable.woff2?url";
 import interFont from "../assets/fonts/Inter-Variable.woff2?url";
 import "../styles/global.css";
+import { googleAnalyticsId } from "../data/analytics";
 import { showTalks, talks } from "../data/talks";
 import { sitePath } from "../utils/site-url";
 
@@ -25,7 +26,7 @@ const {
 const site = Astro.site ?? new URL("https://richardwbown.com");
 const isPreview = site.hostname !== "richardwbown.com";
 const canonical = new URL(sitePath(canonicalPath), site);
-const gaId = import.meta.env.PUBLIC_GA_ID;
+const gaId = isPreview ? undefined : googleAnalyticsId;
 const showTalksNavigation = showTalks && talks.length >= 3;
 ---
 
