@@ -41,5 +41,12 @@ export const ideas: Idea[] = [
     summary:
       "Context diagrams, DDD context maps, C4 diagrams and process canvases help teams see systems clearly and reason about potential changes.",
     relatedPost: "how-to-visualise-your-systems"
+  },
+  {
+    title: "Psychology of engineering teams",
+    summary:
+      "Autonomy, mastery and purpose shape how teams adopt platforms, tools and ways of working.",
+    relatedPost:
+      "daniel-pinks-drive-and-what-self-determination-theory-sdt-really-says"
   }
 ];

@@ -12,7 +12,8 @@ const posts = defineCollection({
     category: z.enum([
       "Architecture",
       "Platform engineering",
-      "Delivery & systems thinking"
+      "Delivery & systems thinking",
+      "People & teams"
     ]),
     originalUrl: z.url()
   })

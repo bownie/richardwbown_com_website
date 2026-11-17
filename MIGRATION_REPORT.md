@@ -1,6 +1,6 @@
 # Migration report
 
-Source URLs were checked on 16 November 2026. Posts with a complete page body were migrated without rewriting their prose; WordPress presentation and promotion blocks were removed. The collection contains 18 unique posts.
+Source URLs were checked on 16 November 2026. Posts with a complete page body were migrated without rewriting their prose; WordPress presentation and promotion blocks were removed. The collection contains 24 unique posts.
 
 ## Posts
 
@@ -25,6 +25,12 @@ Source URLs were checked on 16 November 2026. Posts with a complete page body we
 | https://richardwbown.com/avoiding-toxicity-how-to-manage-cognitive-load/ | 200 | Migrated |
 | https://richardwbown.com/test-driven-development-for-microservices/ | 200 | Migrated |
 | https://richardwbown.com/john-romeros-ten-principles-for-building-great-software/ | 200 | Migrated |
+| https://richardwbown.com/daniel-pinks-drive-and-what-self-determination-theory-sdt-really-says/ | 200 | Migrated under the same slug in People & teams; the body diagram was downloaded locally |
+| https://richardwbown.com/fear-driven-development-when-you-work-against-the-flow/ | 200 | Migrated under the same slug in People & teams |
+| https://richardwbown.com/how-to-fix-the-failing-team/ | 200 | Migrated under the same slug in People & teams |
+| https://richardwbown.com/the-hidden-dangers-of-systems-thinking/ | 200 | Migrated under the same slug in People & teams |
+| https://richardwbown.com/an-elegant-puzzle-systems-of-engineering-management-will-larsen/ | 200 | Migrated under the same slug in People & teams |
+| https://richardwbown.com/the-passive-aggressive-pull-request/ | 200 | Migrated under the same slug in People & teams; page metadata says published 19 July 2026, while the article says it was first written in May 2024 |
 
 ## Talks and podcasts
 
@@ -72,7 +78,7 @@ The Loving Legacy page links to the show on Apple Podcasts and Spotify but does 
 
 ## Images and links
 
-- 21 article images were downloaded locally and are rendered through Astro’s `Image`; no image downloads failed. Two images that belonged to removed author-promotion blocks were discarded.
+- 22 article images were downloaded locally and are rendered through Astro’s `Image`; no image downloads failed. The total includes the newly downloaded Daniel Pink diagram. Two images that belonged to removed author-promotion blocks were discarded.
 - The About page uses the square portrait `richardwbown-london-rooftop-square-reduced.jpg` from the local `hardbittensoftie_website` project.
 - The source embeds in the migrated posts were preserved as links to their recorded YouTube or Speaker Deck embed URLs.
 - The following seven non-migrated same-site destinations were unlinked from article prose; their anchor text remains:
@@ -87,6 +93,8 @@ The Loving Legacy page links to the show on Apple Podcasts and Spotify but does 
 - Other external references in article prose were preserved; they were not exhaustively audited.
 
 ## Redirect notes
+
+No redirects were found for the six additional post URLs; no redirect rules needed removal.
 
 The `/contact/` row in `redirects.csv` records the requested identity mapping with status 200; it is not emitted as a redirect because redirecting a URL to itself would loop. Astro's static redirect configuration handles the base `/author/`, `/tag/`, and `/category/` paths. Their arbitrary subpaths are handled by the host-level `_redirects` file; Astro cannot collapse dynamic redirect parameters to one fixed destination in static config.
 

@@ -337,6 +337,10 @@ main {
     color 160ms ease;
 }
 
+.idea-card:last-child {
+  grid-column: 1 / -1;
+}
+
 .writing-card:hover,
 .idea-card:hover {
   border-color: var(--accent);

@@ -8,7 +8,8 @@ const posts = await getCollection("posts");
 const categories = [
   "Architecture",
   "Platform engineering",
-  "Delivery & systems thinking"
+  "Delivery & systems thinking",
+  "People & teams"
 ] as const;
 const groupedPosts = categories.map((category) => ({
   category,

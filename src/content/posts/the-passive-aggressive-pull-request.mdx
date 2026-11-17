@@ -1,0 +1,91 @@
+---
+title: "The Passive-Aggressive Pull Request"
+date: "2026-07-19"
+summary: "Pull requests can support review yet also create anxiety and friction when the process hinders collaboration and the work itself."
+category: "People & teams"
+originalUrl: "https://richardwbown.com/the-passive-aggressive-pull-request/"
+---
+
+When I first wrote this post, in May 2024, I was reacting to a visceral experience I’d just had at work. As was my way at the time, I was trying to expand that feeling into a general lesson that I could share. In doing so, I diluted the experience. Now, in 2026, I’ve updated this post to describe the feelings rather than draw any particular lessons.
+
+## The Practical View
+
+Pull Requests, PRs or “code reviews” are divisive. They can be a barrier to change. Usually they invite opinions, not all of them welcome. They purport to allow us to carry on with the work while at the same time preventing us from doing it.
+
+The big PR that has taken weeks to assemble is hard to review and might get forced through because no one in the team can be bothered to look at it properly. A lovingly crafted PR might get blocked by someone with a grudge. It may be that it’s used as a place where coding standards meet, like two rivers coming together: one is turbulent, the other still, deep and free-flowing. Who will win when they merge?
+
+And what does it mean when we feel that someone has to win? Does it point to a fault in the way that we are organised as a team or does it point to a more personal failing?
+
+## PR as a Limiting Factor
+
+When viewed through the long lens of time, PRs have improved quality compared to where we were before Git, before distributed version control. Git merges or rebases are generally easier to perform than in (say) CVS or Subversion, where there was more of a sense of being locked out of making changes, and if two people worked on the same piece of code simultaneously, merges could be very hard to get right.
+
+PRs make sense because they encourage peer review without blocking our process – and ‘our process’ means running CI (integration) builds and tests automatically to ensure quality.
+
+A PR, therefore, should be a healthy conversation about our codebase. It is democratic, but despite that, it also gives us the opportunity to impede others’ progress. However, is it useful when they slow down our release process and cause friction in the team?
+
+While PRs help effectively share information about what’s happening in the codebase, they can also expose our shortcomings.
+
+Both giving and receiving feedback is hard. It’s a life skill. Some of us are not naturals, and if you are in a position where you feel exposed intellectually, you might react in an unpredictable way to this situation. Despite having worked in the industry for thirty years, I sometimes still find it difficult to be a part of these conversations both as a reviewer and a reviewee.
+
+## Anxiety at the Review
+
+Sometimes I’ve posted a reminder to a shared Slack or Teams: “Please review: `<<link to PR>>`” and then I held my breath. Occasionally, I close Teams and Outlook to avoid seeing incoming replies. The worst experience I had was when someone publicly just replied “left a comment” which we all knew to mean **FAIL, PLEASE SEE NOTES**.
+
+Rejection is hard. It’s additionally hard if you suffer from Rejection Sensitive Dysphoria; defined by some as a “tendency to ‘anxiously expect, readily perceive, and overreact’ to social rejection”. In other words, a reaction to something like this will not be linearly proportional to the way that this innocuous-looking reply was intended.
+
+Put it another way, rejecting a PR can feel very personal to some.
+
+Personally, I’ve occasionally struggled to justify myself in a PR and rejected reviews can really set me back confidence-wise. If I take a deeper look at why, it could be because I know I am wrong, and the piece of work I’ve sweated over for a day or two or more should be redone or thrown away. But perhaps the work that we’re doing really isn’t that important in the first place, and the person I’m having this discussion with is overstating their case?
+
+## Expert or Newbie?
+
+Circumstances should dictate, but personal preferences in style, in architecture, in the way we react to rejection can always exist between two software engineers.
+
+I find this to be the case particularly when I’m working with someone who is clearly way better than I am at coding. Over the years, I’ve tended to draw a distinction between coding ability and software engineering ability. I feel I’m a pretty good software engineer. I will freely admit that I’m not the best coder. If someone with better coding skills than me has something to say about my PR I may find myself unable to justify my design choices because the implementation may be so far off base or perhaps inelegant.
+
+Indeed, I think it’s this friction that led me to walk away from ‘hardcore’ development (as I see it) and move more into infrastructure design and DevOps. I’m better at helping coders (Java, C++, Rust, Go, etc.) design effective systems than I am at writing code. My influence could therefore be seen as more architectural.
+
+Either way, for my day job, I still need to be able to submit, merge and review PRs. That’s just a matter of how we do things in 2026.
+
+## Skills are not at Question
+
+PRs can be used almost like pawns, both offensively and defensively, under time pressure; an opposing view from a team member may mean that they hold all the cards. When you need a quick review, this power dynamic can be frustrating.
+
+At times like these, I feel like we’ve almost come nowhere in our change management processes over thirty or more years.
+
+But if we ignore that feeling and accept that PRs are a necessary evil, and we know they have the potential to be a social flashpoint, perhaps we could come to view it from both sides as a non-judgmental place?
+
+While the very point of a PR is to say “Yes” or “No” to a code change, the way we do that, the way we see that process shouldn’t be one thing or another. It should be nuanced, respectful and professional.
+
+## Changing the Story
+
+What’s important to realise is that we all live with imperfect software development lifecycles. It’s vital to ensure the process doesn’t get in the way. If any part of our process, including our PR process, is stifling creativity and important voices, we should address it to reduce friction and the impact of potentially psychologically unsafe practices.
+
+I’ve just read “The Psychology of Software Teams” (Cat Hicks, ISBN-13: 978-1040688656), and towards the end, there are some interesting stats on code review experiences based on a [paper published in 2024](https://osf.io/preprints/psyarxiv/hz3et_v1).
+
+> _“We recruited 59 professional developers to join us, all of whom reported significant anxiety about code reviews.”_
+
+The author then shares ideas on how to frame the review or its results for the recipients. These focus on supporting “self-efficacy and self-compassion” during code reviews.
+
+It’s good to see that this effect is being recognised but I’m wondering whether we should do more than purely give engineers the skills to better negotiate these stressful situations.
+
+## Fundamental Change
+
+Sometimes it feels as though PRs have become a blight on our industry. They have become a bolt-on to our development process, reinforced by tooling that bakes them into the path to production. They slow us down and make us frustrated.
+
+It could be that we’re working around the tools rather than deciding for ourselves. In a [Team Topologies](https://richardwbown.com/the-real-value-of-team-topologies/) context, tools should reduce cognitive load and enable fast flow for the (stream-aligned) teams. Helping individuals become more resilient is one way to address cognitive load, but probably not in the way the authors of either book imagined.
+
+Instead of asking individual engineers or organisations to change their behaviour, shouldn’t we ask ourselves whether we’re not just doing this all wrong?
+
+If we allow Pull Requests to incentivise unhelpful behaviours, it could be that we have the wrong tooling, the wrong workflow at the wrong time, or it could be just that we have a culture that prioritises the wrong things. It could even be that our bosses don’t trust us, so they put in stage gates. But the point of our tools is to help us develop changes that flow to production.
+
+For too long, we’ve accepted them as simply “the way we do things”. But they’re still choices.
+
+## Solving Problems
+
+People can use PRs as weapons to stake out their territory and to land opinions that they might not otherwise care about. PRs and the process wrapped around them can pit developer against developer when they should be helping us solve problems together.
+
+I don’t think pull requests are inherently bad. I’ve reviewed plenty of excellent ones and learned a great deal from them. But I’ve also learned to recognise the feeling that comes when the tool becomes more important than the work, when I’m thinking less about solving the problem in front of me than about navigating the process around it.
+
+Perhaps the question isn’t whether we need better code reviews, or even kinder ones. Perhaps it’s whether we’ve become so accustomed to this way of working that we’ve stopped asking whether it’s still the right way at all.

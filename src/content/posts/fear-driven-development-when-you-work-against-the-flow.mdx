@@ -1,0 +1,30 @@
+---
+title: "Fear-Driven Development: When You Work Against The Flow"
+date: "2023-02-21"
+updated: "2024-12-01"
+summary: "A cross-functional team delivered well but organizational handoffs, slow environments and release controls kept its work from flowing."
+category: "People & teams"
+originalUrl: "https://richardwbown.com/fear-driven-development-when-you-work-against-the-flow/"
+---
+
+No matter how I slice it, I return to three things to remember to build a path to successful software. **Testing, Teams, Architecture.** Pay attention to those three equally, and you can’t fail from a software perspective.
+
+But what happens if your organisation structure won’t allow it? Let me show an example of a cross-functional team ultimately failing due to the surrounding organisation.
+
+During a multi-year accounting project for a Dutch bank, a complicated organisational landscape combined with banking regulations and a lack of management foresight hampered delivery.
+
+A functional split between development, operations and IT meant that provisioning IT resources (servers, databases, storage) required patience, knowledge and usually escalation. Typical lead times for environments (and even accounts) could be measured in weeks. The development team were experts with domain knowledge. They were truly cross-functional. The IT landscape however meant that developers could not have the rights to provision either machines or databases. Any releases took weeks to test, by a test team who lacked sufficient domain knowledge and had to be led by the hand through the changes by the developers and SMEs. The final acceptance testing usually happened over a period of weeks followed by scheduled conversion dry runs taking place over weekends. This ran up to a big bang go-live which typically led to further fixes either over the weekend or in the week afterwards. The operations team also required a formal handover process which led again to gaps in knowledge and quality failures, lack of feedback and slow cycles.
+
+The delivered solution was actually highly performant – orders of magnitude faster than previous systems, modular and service driven. However, it was constrained by the existing release procedures and existing organisational design and inertia. Despite having a high-performing development team, it felt frustrating to them not to be able to release more quickly. The testing team was often blocking the release process because they had to come up to speed with functional knowledge. The operations team were often frustrated that the developers hadn’t considered enough operational aspects of the delivery before the solution arrived with them.
+
+Additionally, it became clear that it was not in everyone’s best interests to release quickly. There were plenty of those in the system for whom the current cadence was just fine and while the end-users were frustrated they accepted that they couldn’t get changes faster, they accepted that “this has to be done according to the existing rules”. Cultural norms play a factor here. Dutch society follows rules closely, some unwritten, some written. Banks are conservative by nature. A natural instinct to keep the peace between factions contributed to a lack of willingness to change to accommodate a new approach. Sometimes this means reduced roles for certain team members and strong unions and employee agreements could signal legal trouble for employers.
+
+In reality, this was mixed thinking on the part of the management. This was a bold move but ultimately it was fear-driven development. Fear of the unknown. A new technology, a new approach but failure to accommodate that in the rest of the process. It met the immovable rock of many years of existing ways of working and just stopped. No amount of talks by Jez Humble (and he did indeed come and talk to us) or reading ‘Accelerate’ or trying to apply DevOps and system thinking at the ground level could ever overcome the hierarchies in the system.
+
+The development team was cross-functional but constrained by the rules that governed the rest of the organisation. It could only move at the pace of the rest of the organisation. This is a classic example of the [Theory of Constraints](https://en.wikipedia.org/wiki/Theory_of_constraints) in action. Delivered quality was excellent but due to slow cycle times and release processes, keeping quality high and releasing and aligning that quality solution was difficult. There was too much handover which causes gaps to appear. Ultimately while the project went live, and was live for many years it was eventually completely rewritten in another solution to reduce licensing costs. That wasn’t a failure of the architecture, it was however a failure of the technology and the team.
+
+By the time you’re rewriting your solution with a cheaper technology, it’s clear that speed is not a fundamental concern. In fact, you could see the newer solution actually being the constraint on the rest of the system. It was the outlier which didn’t fit in.
+
+So what do we learn from this process? Certainly that the Theory of Constraints is real. Secondly that if some of your system constraints are truly immovable, it is foolish to work against them. Thirdly that flow comes in all flavours.
+
+How can you avoid making costly mistakes before you make them? Consider the whole system and not just the one moving piece you think is slowing you down. Perhaps your system is just fine or you need to reassess why you think you need to make a change.
