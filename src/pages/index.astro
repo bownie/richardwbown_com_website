@@ -2,8 +2,11 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ideas } from "../data/ideas";
+import { socialLinks } from "../data/social-links";
 import { talks } from "../data/talks";
 import { sitePath } from "../utils/site-url";
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/richard-bown-profile.jpg";
 
 const posts = await getCollection("posts");
 const postsBySlug = new Map(
@@ -29,7 +32,8 @@ const talksSectionVisible = talks.length >= 3;
 const person = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Richard W. Bown"
+  name: "Richard W. Bown",
+  sameAs: [socialLinks.linkedin, socialLinks.bluesky]
 };
 ---
 
@@ -41,19 +45,34 @@ const person = {
 >
   <div class="home-page">
     <section class="hero" aria-labelledby="hero-title">
-      <h1 class="hero-title" id="hero-title">
-        Platforms should make the right thing the easy thing.
-      </h1>
+        <div class="reading-layout">
+        <h1 class="hero-title" id="hero-title">
+          Making platforms right.
+        </h1>
+        <Image
+            class="profile-photo"
+            src={profilePhoto}
+            alt="Richard Bown smiling outdoors in front of a brick wall."
+            width={640}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+
       <p class="hero-intro">
-        Senior platform architect with 30 years across banking, insurance and
-        complex enterprise environments. I work on platform-as-a-product,
-        cognitive load and socio-technical architecture, and I write about what
-        actually works. Team Topologies Advocate and contributor to the 2nd
-        edition.
+        Hello, I'm Richard. I'm a senior platform architect with 30 years across banking,
+        insurance and complex enterprise environments. I work on infrastructure across AWS,
+        GCP, Azure, platform-as-a-product, cognitive load and socio-technical architecture,
+        and I write about what
+        actually works. Team Topologies Advocate and contributor to the 2nd edition.
+      </p>
+
+      <p>
+
       </p>
       <ul class="hero-links" aria-label="Contact links">
-        <li><a href="https://LINKEDIN_URL">LinkedIn URL TBD</a></li>
-        <li><a href="mailto:me@richardwbown.com">Email</a></li>
+        <li><a href={socialLinks.linkedin}>LinkedIn</a></li>
+        <li><a href={socialLinks.bluesky}>Bluesky</a></li>
       </ul>
     </section>
 
@@ -208,8 +227,8 @@ const person = {
       </header>
       <p class="perspective-copy">TODO: CONTACT_LINE</p>
       <ul class="contact-links">
-        <li><a href="mailto:me@richardwbown.com">Email</a></li>
-        <li><a href="https://LINKEDIN_URL">LinkedIn URL TBD</a></li>
+        <li><a href={socialLinks.linkedin}>LinkedIn</a></li>
+        <li><a href={socialLinks.bluesky}>Bluesky</a></li>
       </ul>
     </section>
   </div>

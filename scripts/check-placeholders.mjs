@@ -20,7 +20,7 @@ for (const directory of sourceDirectories) {
 }
 
 const placeholders = new Map();
-const fixedTokens = ["EMAIL", "LINKEDIN_URL", "AUTHOR_SITE_URL"];
+const fixedTokens = ["EMAIL", "AUTHOR_SITE_URL"];
 
 for (const file of files) {
   const source = readFileSync(file, "utf8");

@@ -156,7 +156,7 @@ ol {
 
 .header-inner {
   display: flex;
-  width: min(calc(100% - 3rem), var(--content-width));
+  width: min(calc(100% - 3rem), var(--reading-width));
   min-height: var(--header-height);
   align-items: center;
   justify-content: space-between;
@@ -243,11 +243,12 @@ main {
 }
 
 .hero {
-  display: flex;
-  min-height: min(78vh, 760px);
-  flex-direction: column;
-  justify-content: center;
-  padding-block: clamp(4rem, 11vw, 9rem);
+  padding-block: clamp(2rem, 6vw, 4rem);
+}
+
+.hero-content {
+  width: min(100%, var(--reading-width));
+  margin-inline: auto;
 }
 
 .hero-title {
@@ -259,10 +260,14 @@ main {
 
 .hero-intro {
   max-width: 58ch;
-  margin-block: var(--space-3) var(--space-4);
+  margin-block: var(--space-2);
   color: var(--muted);
   font-size: clamp(1.15rem, 2.2vw, 1.45rem);
   line-height: 1.55;
+}
+
+.hero .profile-photo {
+  margin-block: var(--space-1);
 }
 
 .hero-links,
@@ -553,7 +558,7 @@ time {
 
 @media (max-width: 720px) {
   .header-inner {
-    width: min(calc(100% - 2rem), var(--content-width));
+    width: min(calc(100% - 2rem), var(--reading-width));
   }
 
   .desktop-nav {
@@ -567,10 +572,6 @@ time {
 
   .home-page {
     width: min(calc(100% - 2rem), var(--content-width));
-  }
-
-  .hero {
-    min-height: 68vh;
   }
 
   .writing-grid {

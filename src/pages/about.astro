@@ -2,12 +2,14 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import profilePhoto from "../assets/richard-bown-profile.jpg";
+import { socialLinks } from "../data/social-links";
 import { sitePath } from "../utils/site-url";
 
 const person = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Richard W. Bown"
+  name: "Richard W. Bown",
+  sameAs: [socialLinks.linkedin, socialLinks.bluesky]
 };
 ---
 
@@ -83,8 +85,8 @@ const person = {
     <section aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
       <ul class="link-list">
-        <li><a href="mailto:me@richardwbown.com">me@richardwbown.com</a></li>
-        <li><a href="https://LINKEDIN_URL">LinkedIn URL TBD</a></li>
+        <li><a href={socialLinks.linkedin}>LinkedIn</a></li>
+        <li><a href={socialLinks.bluesky}>Bluesky</a></li>
       </ul>
     </section>
   </div>

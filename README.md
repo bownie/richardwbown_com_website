@@ -29,9 +29,9 @@ For production, build with `SITE_MODE=production` and deploy `dist/` to a host t
 
 ## Configuration
 
-Copy `.env.example` to `.env` and set `PUBLIC_GA_ID` only if Google Analytics 4 is required. Analytics is not loaded when the variable is empty. With fewer than three confirmed Talks entries, `/talks/` is still generated, but remains out of navigation and the sitemap.
+Copy `.env.example` to `.env`. The LinkedIn and Bluesky URLs are centralized in `src/data/social-links.ts` and can be overridden with `LINKEDIN_URL` and `BLUESKY_URL`. Set `PUBLIC_GA_ID` only if Google Analytics 4 is required; analytics is not loaded when the variable is empty. With fewer than three confirmed Talks entries, `/talks/` is still generated, but remains out of navigation and the sitemap.
 
-Before production, replace `LINKEDIN_URL` and `AUTHOR_SITE_URL`, complete the `PERSPECTIVE_TEXT` and `CONTACT_LINE` copy, and add the PDF at `public/downloads/A-Systems-Approach-to-Software-Product-Delivery-v1.1-Richard-Bown.pdf` if it becomes available. The Papers section stays hidden until that file exists.
+Before production, replace `AUTHOR_SITE_URL`, complete the `PERSPECTIVE_TEXT` and `CONTACT_LINE` copy, and add the PDF at `public/downloads/A-Systems-Approach-to-Software-Product-Delivery-v1.1-Richard-Bown.pdf` if it becomes available. The Papers section stays hidden until that file exists.
 
 ## Content
 
