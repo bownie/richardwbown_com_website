@@ -27,8 +27,7 @@ const redirectDestinations = {
   "/monitoring-azure-devops-build-pipelines-with-prometheus/":
     "/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/",
   "/contact-me/": "/contact/",
-  "/work-with-me/": "/",
-  "/consulting-offerings/": "/",
+  "/consulting-offerings/": "/work-with-me/",
   "/blog/": "/writing/",
   "/archive/": "/writing/",
   "/author/": "/writing/",
@@ -49,7 +48,27 @@ const redirectDestinations = {
   "/podcast-making-it-software-more-sustainable-with-tom-kennes/": "/talks/",
   "/observability-engineering-and-customer-needs-with-stephen-townsend/":
     "/talks/",
-  "/we-are-developers-world-congress-2023/": "/talks/"
+    "/we-are-developers-world-congress-2023/":
+    "/talks/",
+  "/loving-legacy-podcast/human-software-how-we-treat-each-other-at-work/":
+    "/talks/",
+  "/loving-legacy-podcast/a-manifesto-for-better-software-delivery/":
+    "/talks/",
+  "/podcast-a-manifesto-for-better-software-delivery/": "/talks/",
+  "/ddd-refactoring-and-legacy-code/":
+    "/do-bounded-contexts-and-domain-driven-design-even-matter/",
+  "/how-to-tackle-a-legacy-codebase/":
+    "/legacy-systems-and-the-cost-of-hidden-technical-debt/",
+  "/thinking-in-systems-change-management/":
+    "/the-hidden-dangers-of-systems-thinking/",
+  "/do-you-need-to-build-an-internal-developer-platform/":
+    "/how-to-build-a-successful-platform-team/",
+  "/azure-devops-yaml-pipelines-the-land-of-confusion/":
+    "/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/",
+  "/when-you-cant-do-test-driven-development/":
+    "/test-driven-development-for-microservices/",
+  "/test-driven-development-as-a-design-tool/":
+    "/test-driven-development-for-microservices/"
 };
 
 const redirects = Object.fromEntries(
