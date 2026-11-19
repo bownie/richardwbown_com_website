@@ -22,8 +22,13 @@ jobs:
     env:
       LINKEDIN_URL: ${{ vars.LINKEDIN_URL || 'https://www.linkedin.com/in/richard-bown/' }}
       BLUESKY_URL: ${{ vars.BLUESKY_URL || 'https://bsky.app/profile/bownie.bsky.social' }}
-      SITE_MODE: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
-      BASE_PATH: ${{ github.event_name == 'pull_request' && '/richardwbown_com_website/' || '/' }}
+      # Deployments from main publish the staging site on the project Pages URL
+      # (https://bownie.github.io/richardwbown_com_website/). astro.config.mjs
+      # derives the base path from this mode, so preview is what keeps generated
+      # asset and link URLs under the project path. A production build uses `/`
+      # and is only valid once richardwbown.com is the configured custom domain;
+      # set the repository variable SITE_MODE=production to build that way.
+      SITE_MODE: ${{ github.event_name == 'pull_request' && 'preview' || vars.SITE_MODE || 'preview' }}
       SHOW_TALKS: ${{ vars.SHOW_TALKS }}
     steps:
       - name: Check out repository
@@ -43,6 +48,13 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: Remove custom domain file from staging builds
+        # A CNAME file in the artifact would point this project Pages deployment
+        # at richardwbown.com while that domain is still serving the WordPress
+        # site, so it is only published from a production build.
+        if: env.SITE_MODE != 'production'
+        run: rm -f dist/CNAME
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
