@@ -98,6 +98,7 @@ const showTalksNavigation = showTalks && talks.length >= 3;
           <a href={sitePath("#ideas")}>Ideas</a>
           {showTalksNavigation && <a href={sitePath("#talks")}>Talks</a>}
           <a href={sitePath("#about")}>About</a>
+          <a href={sitePath("work-with-me/")}>Work with me</a>
           <a href={sitePath("#contact")}>Contact</a>
         </nav>
         <details class="mobile-menu">
@@ -108,6 +109,7 @@ const showTalksNavigation = showTalks && talks.length >= 3;
             <a href={sitePath("#ideas")}>Ideas</a>
             {showTalksNavigation && <a href={sitePath("#talks")}>Talks</a>}
             <a href={sitePath("#about")}>About</a>
+            <a href={sitePath("work-with-me/")}>Work with me</a>
             <a href={sitePath("#contact")}>Contact</a>
           </nav>
         </details>
@@ -119,5 +121,49 @@ const showTalksNavigation = showTalks && talks.length >= 3;
     <footer class="site-footer">
       <p>Richard W. Bown</p>
     </footer>
+    <script>
+      type Gtag = (
+        command: "event",
+        name: string,
+        params?: Record<string, unknown>
+      ) => void;
+
+      const outboundEvents: Record<string, string> = {
+        "www.linkedin.com": "outbound_linkedin",
+        "linkedin.com": "outbound_linkedin",
+        "bsky.app": "outbound_bluesky"
+      };
+
+      // Sends a GA4 event when a reader leaves for LinkedIn or Bluesky, and when
+      // they click a CTA marked with data-ga-event. No-ops in preview builds,
+      // where gtag is never loaded.
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const link = target.closest("a");
+        if (!(link instanceof HTMLAnchorElement)) return;
+
+        const gtag = (window as unknown as { gtag?: Gtag }).gtag;
+        if (typeof gtag !== "function") return;
+
+        const destination = new URL(link.href, window.location.href);
+        const outboundEvent = outboundEvents[destination.hostname];
+        const isExternal = destination.origin !== window.location.origin;
+        const eventName = link.dataset.gaEvent ?? outboundEvent;
+
+        if (!eventName) return;
+        if (!link.dataset.gaEvent && !isExternal) return;
+
+        gtag("event", eventName, {
+          destination:
+            link.dataset.gaDestination ?? outboundEvent ?? destination.hostname,
+          link_url: link.href,
+          link_text: (link.textContent ?? "").trim().slice(0, 100),
+          page_path: window.location.pathname,
+          transport_type: "beacon"
+        });
+      });
+    </script>
   </body>
 </html>
