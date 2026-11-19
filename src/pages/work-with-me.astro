@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { socialLinks } from "../data/social-links";
+import { sitePath } from "../utils/site-url";
+
+const engagements = [
+  {
+    title: "Platform strategy and architecture",
+    body: "Working out what the platform should actually be — the boundaries, the interfaces, the build-versus-buy calls — and how it holds up against a real estate of legacy systems across AWS, Azure, on-prem and hybrid."
+  },
+  {
+    title: "Platform-as-a-product and developer experience",
+    body: "Turning a mandated platform into the obvious choice: golden paths, self-service, and the developer experience work that decides whether teams adopt it or quietly route around it."
+  },
+  {
+    title: "Socio-technical design and cognitive load",
+    body: "Team Topologies, interaction modes, and the organisational design that makes an architecture workable. I'm a Team Topologies Advocate and a contributor to the second edition of the book."
+  },
+  {
+    title: "Legacy modernisation and technical debt",
+    body: "Making progress on the systems nobody wants to touch — finding the seams, sequencing the work, and getting change into production without a big-bang rewrite."
+  }
+];
+
+const audiences = [
+  "Heads of engineering and heads of platform who have been handed a platform mandate and need it to land.",
+  "CTOs and architects working in regulated or complex enterprises — banking, insurance, large-scale product organisations.",
+  "Teams whose platform exists but nobody uses it, or whose delivery has slowed to the point that nobody can say why."
+];
+
+const steps = [
+  {
+    title: "A conversation",
+    body: "You describe the problem in your words. I tell you whether it is something I can help with, and roughly how I would approach it."
+  },
+  {
+    title: "A short piece of work",
+    body: "Usually a review or a diagnostic: enough time with the people and the systems to get specific about what is actually going on, and what to do about it first."
+  },
+  {
+    title: "Then decide",
+    body: "Either a defined piece of work to make the change, or you take it in-house with a plan you can act on. Both are good outcomes."
+  }
+];
+---
+
+<BaseLayout
+  title="Work with me — Richard W. Bown"
+  description="Consulting on platform strategy, platform-as-a-product, developer experience, socio-technical architecture and legacy modernisation."
+  canonicalPath="work-with-me/"
+>
+  <div class="reading-layout">
+    <h1>Work with me</h1>
+    <p class="lede">
+      I am a hands-on platform architect with 30 years across banking,
+      insurance and complex enterprise environments. I help engineering leaders
+      work out what their platform should be, and then make it the thing teams
+      actually want to use.
+    </p>
+
+    <section aria-labelledby="what-i-do">
+      <h2 id="what-i-do">What I do</h2>
+      <ul class="post-list">
+        {engagements.map((engagement) => (
+          <li>
+            <h3>{engagement.title}</h3>
+            <p class="post-summary">{engagement.body}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="who-this-is-for">
+      <h2 id="who-this-is-for">Who this is for</h2>
+      <ul class="post-list">
+        {audiences.map((audience) => (
+          <li>
+            <p>{audience}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="how-it-works">
+      <h2 id="how-it-works">How it usually works</h2>
+      <ul class="post-list">
+        {steps.map((step) => (
+          <li>
+            <h3>{step.title}</h3>
+            <p class="post-summary">{step.body}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="get-in-touch">
+      <h2 id="get-in-touch">Get in touch</h2>
+      <p class="perspective-copy">
+        The fastest route is LinkedIn — a short message about the problem is
+        enough to start. I write about a lot of this in the
+        <a href={sitePath("writing/")}>writing</a> if you would rather read first.
+      </p>
+      <ul class="contact-links">
+        <li><a href={socialLinks.linkedin}>LinkedIn</a></li>
+        <li><a href={socialLinks.bluesky}>Bluesky</a></li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
