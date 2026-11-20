@@ -54,7 +54,9 @@ matching the playbook i.e. default -> default -> localhost
 
 #### 5\. Attempt to run playbook locally
 
-ansible-playbook playbooks/linux-build-server.yml --extra-vars @inventories/group\_vars/linux-build-server.yml
+```
+ansible-playbook playbooks/linux-build-server.yml --extra-vars @inventories/group_vars/linux-build-server.yml
+```
 
 #### 6\. Iterate and install extras
 
