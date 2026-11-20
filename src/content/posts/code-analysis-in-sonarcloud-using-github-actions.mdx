@@ -1,0 +1,75 @@
+---
+title: "Rust Code Analysis in SonarCloud using GitHub Actions"
+date: "2022-11-24"
+summary: "Setting up SonarCloud code analysis for a new Rust project and running it from GitHub Actions so complexity and duplication stay visible."
+category: "Platform engineering"
+originalUrl: "https://richardwbown.com/code-analysis-in-sonarcloud-using-github-actions/"
+---
+
+import { Image } from "astro:assets";
+import image0 from "../../assets/migrated/code-analysis-in-sonarcloud-using-github-actions/image-01.png";
+import image1 from "../../assets/migrated/code-analysis-in-sonarcloud-using-github-actions/image-02.png";
+
+I’m building a new Rust project and I want to do it right, so I’m interested in complexity and code smells and want to get that automatically via my github CI into SonarCloud. Not too much to ask you’d think?
+
+Personally, I’m a fan of SonarCloud for bringing code analysis and coverage together, and so I find it a bit frustrating that [SonarCloud GitHub Action](https://github.com/SonarSource/sonarcloud-github-action) doesn’t support rust out of the box yet in 2022.
+
+If you integrate the sonarcloud scanner and run it, you just end with a new project in SonarCloud but it has no analysis. The message “The main branch of this project is empty” is what you get instead.
+
+<Image src={image0} alt={"SonarCloud scanner reporting \"the main branch of this project is empty\""} />
+
+Unfortunately, we can’t fix this message completely, but we can get some stats into SonarCloud – namely the code analysis via [clippy](https://github.com/rust-lang/rust-clippy) alongside [cargo-sonar](https://lib.rs/crates/cargo-sonar). These need to be installed and configured on your action as follows.
+
+_N.B. I’m also showing you how to integrate [llvm-cov](https://github.com/taiki-e/cargo-llvm-cov) for code coverage – even though the upload to sonarcloud doesn’t appear to work yet._
+
+Essentially this is a four-step process
+
+-   Install rustup and clippy and llvm-cov
+-   Run clippy and convert file to JSON output format
+-   Run llvm-cov to generate coverage output
+-   Run the sonarcloud runner to upload the output files generated in the previous steps.
+
+Here’s the excerpt from my [github action yaml](https://github.com/bownie/cto-game/blob/main/.github/workflows/sonarcloud.yml):
+
+```
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Install Rust
+        run: rustup update stable
+
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@cargo-llvm-cov
+
+      - name: Install Clippy
+        run: rustup component add clippy
+
+      - name: Install cargo-sonar and run Clippy
+        run: |
+            cargo install cargo-sonar
+            cargo clippy --message-format json > my-clippy-report.json
+            cargo sonar --issues clippy --clippy-path my-clippy-report.json
+
+      - name: Generate code coverage
+        run: cargo llvm-cov --all-features --workspace --lcov --output-path lcov.info
+
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.externalIssuesReportPaths=sonar-issues.json
+            -Dcommunity.rust.lcov.reportPaths=lcov.info
+```
+
+Assuming your sonar.properties is set up correctly you should then get some statistics uploaded to Sonarcloud. As mentioned, you won’t get code coverage, but I’ll cover how to do that on [codecov](https://about.codecov.io/) in another blog post.
+
+<Image src={image1} alt={"Uploaded code analysis statistics showing in SonarCloud"} />
+
+The potentially better news is that if you’re running your own SonarQube instance then you can use the [sonar-rust plugin](https://github.com/elegoff/sonar-rust) to do both clippy and llvm-cov analysis and upload.
+
+[Let me know](https://richardwbown.com/contact/) how you get on.

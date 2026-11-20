@@ -69,23 +69,47 @@ const article = {
     <div class="post-content">
       <Content />
     </div>
-    <aside class="post-cta" aria-labelledby="post-cta-title">
-      <p class="section-label">Consulting</p>
-      <h2 id="post-cta-title">Work with me</h2>
-      <p>
-        If you're working on platform strategy, developer experience or
-        engineering culture, I'm happy to talk.
+    {post.data.callout === "fiction" ? (
+      <aside class="post-cta" aria-labelledby="post-cta-title">
+        <p class="section-label">Fiction</p>
+        <h2 id="post-cta-title">More like this</h2>
+        <p>
+          I write novels about technology and the people inside it. Human
+          Software is the debut.
+        </p>
+        <p class="post-cta-link">
+          <a
+            href="https://richardbownauthor.com"
+            data-ga-event="outbound_novel"
+            data-ga-destination="richardbownauthor"
+          >
+            richardbownauthor.com →
+          </a>
+        </p>
+      </aside>
+    ) : (
+      <aside class="post-cta" aria-labelledby="post-cta-title">
+        <p class="section-label">Consulting</p>
+        <h2 id="post-cta-title">Work with me</h2>
+        <p>
+          If you're working on platform strategy, developer experience or
+          engineering culture, I'm happy to talk.
+        </p>
+        <p class="post-cta-link">
+          <a
+            href={sitePath("work-with-me/")}
+            data-ga-event="cta_click"
+            data-ga-destination="work-with-me"
+          >
+            How I can help →
+          </a>
+        </p>
+      </aside>
+    )}
+    {post.data.callout !== "fiction" && (
+      <p class="muted">
+        <a href={sitePath("writing/")}>Back to Writing</a>
       </p>
-      <p class="post-cta-link">
-        <a
-          href={sitePath("work-with-me/")}
-          data-ga-event="cta_click"
-          data-ga-destination="work-with-me"
-        >
-          How I can help →
-        </a>
-      </p>
-    </aside>
-    <p class="muted"><a href={sitePath("writing/")}>Back to Writing</a></p>
+    )}
   </article>
 </BaseLayout>

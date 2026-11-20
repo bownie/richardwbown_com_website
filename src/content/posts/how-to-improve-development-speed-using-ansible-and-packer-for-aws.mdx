@@ -1,0 +1,61 @@
+---
+title: "How to Improve Development Speed using Ansible and Packer for AWS"
+date: "2025-02-22"
+summary: "Using Ansible and Packer to build AWS AMIs locally and in pipelines, so image builds are faster and infrastructure stays reproducible."
+category: "Platform engineering"
+originalUrl: "https://richardwbown.com/how-to-improve-development-speed-using-ansible-and-packer-for-aws/"
+---
+
+import { Image } from "astro:assets";
+import image0 from "../../assets/migrated/how-to-improve-development-speed-using-ansible-and-packer-for-aws/image-01.png";
+
+If you’re a jobbing SRE or DevOps engineer you’ll often be parachuted into someone else’s mess and have to make sense of it. A lot of the last ten years of public cloud work has been partial lift-and-shift to the public cloud, which entails a lot of ‘on-prem’ like work, i.e. we end up with a cloud VM replicating a lot of on-prem configured boxes to move “off-prem”.
+
+<Image src={image0} alt={"Diagram of the Ansible and Packer workflow for building an AWS AMI"} />
+
+[Diagram from this article by Yatin Gupta about Packer and Ansible for AWS](https://yatingupta.medium.com/basics-of-packer-ansible-terraform-and-how-they-fit-together-8aa21b6c657e)
+
+As part of this experience, I’ve found pipelines that build images – in the case of AWS these are called AMI (Amazon Machine Images) – where really what I want is a local experience to build stuff faster. A lot of ansible or salt configuration management is either done “pre image” build or post deployment. It’s better though, from a security and compliance standpoint, to regularly rebuild your machine images and recycle your boxes completely rather than rely on “on box” config management updates.
+
+Recently I’ve been laboriously, and believe me, it’s laborious, converting a stack of salt states to Ansible and this can be painfully slow if you’re waiting for packer to run the configuration for you. So I’m writing this blog as a memento mori for my ‘installing ansible locally and making it happen quicker’ 🙂
+
+So this is all about learning about how to speed up troubleshoot your AMI image builds.
+
+## Preconditions
+
+If you’re anything like my employers, you’ll have a set of whitelisted base images available in AWS. These whitelisted images will change regularly as patches comes out for them and system progress. You first job is to identify a suitable base image for planning your AMI. Once selected you’ll want to create a basic packer setup for this (either Linux or Windows) image and install whatever packages you think are necessary. For example recently I’ve been working on build servers which need to be set up both as Azure DevOps build agents and GitHub runners so a good starting point is to include configuration for both of those setups. Once you have a basic working AMI with base packages installed, spin up and instance with ssh/command line access in order to proceed. For the purposes of this blog I’ll be taking you through the Linux setup (for RHEL 8.x).
+
+So at this stage you have a basic packer setup and a basic ansible setup. You can run packer and get your base AMI. Then you can spin up your AMI and you’ll want to go ahead and install ansible.
+
+#### 1\. Install Ansible locally and any dependencies
+
+```
+sudo dnf install ansible
+```
+
+#### 2\. Copy across Ansible playbook and roles
+
+Ensure that ansible-playbooks and roles are copied across to the target machine.
+
+#### 3\. Create an ansible.cfg
+
+```
+[defaults]
+roles_path=/home/user/system-ansible:/home/user/system-ansible/roles
+```
+
+#### 4\. Create local hosts file
+
+matching the playbook i.e. default -> default -> localhost
+
+```
+[default]127.0.0.1 ansible_connection=local
+```
+
+#### 5\. Attempt to run playbook locally
+
+ansible-playbook playbooks/linux-build-server.yml --extra-vars @inventories/group\_vars/linux-build-server.yml
+
+#### 6\. Iterate and install extras
+
+This will fail initially. You’ll need to install extra packages – perhaps python packages to support your ansible runs. Perhaps you’ll need to tweak the configuration. However you will shortly be able to run the playbook locally and test out your roles without having to wait for packager to provision a new image.
