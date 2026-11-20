@@ -2,8 +2,21 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "richardwbown",
   "compatibility_date": "2026-11-20",
+  // Keep the workers.dev URL reachable. Configuring `routes` disables it by
+  // default, and it is the only staging surface until the apex is proxied
+  // (a disabled workers.dev URL answers every request with error 1042).
+  "workers_dev": true,
+  // A small worker in front of the assets, so www can be redirected without an
+  // extra Cloudflare Redirect Rule permission. It answers www with a 301 and
+  // hands every other request to env.ASSETS.fetch().
+  "main": "src/worker.js",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    // The worker must see every request: a request for / matches index.html on
+    // both hostnames, so with default asset handling it would never run for
+    // www at all.
+    "run_worker_first": true,
     // Astro builds with trailingSlash: "always", so force that form here too
     // rather than relying on the "auto" default to guess it.
     "html_handling": "force-trailing-slash",
@@ -13,15 +26,20 @@
   "observability": {
     "enabled": true
   },
-  // A Worker Route rather than a custom domain. A custom domain requires the
-  // existing A records at the apex to be deleted first (error 100117), which is
-  // a DNS change; a route intercepts requests to the already-proxied hostname
-  // instead, so no DNS record is touched. The old A records stay in place as the
-  // rollback path: remove this route and the site falls back to WordPress.
+  // Worker Routes rather than custom domains. A custom domain requires the
+  // existing A records to be deleted first (error 100117), which is a DNS
+  // change; a route intercepts the hostname and leaves DNS alone.
+  //
+  // Both routes are INERT until the apex and www A records are proxied. They
+  // currently resolve to WP Engine and are DNS-only, so traffic never passes
+  // through this zone at all. Once proxied, the old records stay in place as
+  // the rollback path: remove these routes and the site falls back to
+  // WordPress.
   //
   // MX (Google Workspace), the SPF/DMARC TXT records and every other subdomain
   // are untouched either way, so mail keeps working across the cutover.
   "routes": [
-    { "pattern": "richardwbown.com/*", "zone_name": "richardwbown.com" }
+    { "pattern": "richardwbown.com/*", "zone_name": "richardwbown.com" },
+    { "pattern": "www.richardwbown.com/*", "zone_name": "richardwbown.com" }
   ]
 }
