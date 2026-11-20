@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sitePath } from "../utils/site-url";
+import { ogImageSizes } from "../data/og-image-sizes";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -13,6 +14,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const heroSize = post.data.image ? ogImageSizes[post.data.image] : undefined;
 const canonicalPath = `${post.id.replace(/\.mdx?$/, "")}/`;
 const canonicalUrl = new URL(sitePath(canonicalPath), Astro.site).href;
 const modified = post.data.updated ?? post.data.date;
@@ -27,7 +29,10 @@ const article = {
     "@type": "Person",
     name: "Richard W. Bown"
   },
-  mainEntityOfPage: canonicalUrl
+  mainEntityOfPage: canonicalUrl,
+  ...(post.data.image
+    ? { image: new URL(sitePath(post.data.image), Astro.site).href }
+    : {})
 };
 ---
 
@@ -37,6 +42,7 @@ const article = {
   canonicalPath={canonicalPath}
   ogType="article"
   publishedTime={post.data.date.toISOString()}
+  image={post.data.image}
   structuredData={article}
 >
   <article class="reading-layout">
@@ -66,6 +72,18 @@ const article = {
         )}
       </p>
     </header>
+    {post.data.image && (
+      <figure class="post-hero">
+        <img
+          src={sitePath(post.data.image)}
+          alt={post.data.title}
+          width={heroSize?.width}
+          height={heroSize?.height}
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+    )}
     <div class="post-content">
       <Content />
     </div>

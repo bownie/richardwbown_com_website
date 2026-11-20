@@ -12,6 +12,7 @@ interface Props {
   canonicalPath: string;
   ogType?: "website" | "article";
   publishedTime?: string;
+  image?: string;
   structuredData?: Record<string, unknown>;
 }
 
@@ -21,11 +22,13 @@ const {
   canonicalPath,
   ogType = "website",
   publishedTime,
+  image,
   structuredData
 } = Astro.props;
 const site = Astro.site ?? new URL("https://richardwbown.com");
 const isPreview = site.hostname !== "richardwbown.com";
 const canonical = new URL(sitePath(canonicalPath), site);
+const socialImage = image ? new URL(sitePath(image), site).href : undefined;
 const gaId = isPreview ? undefined : googleAnalyticsId;
 const showTalksNavigation = showTalks && talks.length >= 3;
 ---
@@ -58,9 +61,19 @@ const showTalksNavigation = showTalks && talks.length >= 3;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    {socialImage && (
+      <>
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:image:alt" content={title} />
+      </>
+    )}
+    <meta
+      name="twitter:card"
+      content={socialImage ? "summary_large_image" : "summary"}
+    />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {socialImage && <meta name="twitter:image" content={socialImage} />}
     {ogType === "article" && publishedTime && (
       <meta property="article:published_time" content={publishedTime} />
     )}
