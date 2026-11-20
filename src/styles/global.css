@@ -511,6 +511,21 @@ time {
   margin: var(--space-4) auto;
 }
 
+/* Featured image. Scales inside both constraints so portrait images stay
+   readable without cropping or distortion. */
+.post-hero {
+  margin-block: var(--space-3) var(--space-4);
+}
+
+.post-hero img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 60vh;
+  height: auto;
+  margin-inline: auto;
+}
+
 .post-content pre {
   overflow-x: auto;
   max-width: 100%;
