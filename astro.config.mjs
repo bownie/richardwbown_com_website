@@ -80,10 +80,11 @@ export const hostRedirects = {
   "/author/*": "/writing/",
   "/tag/*": "/writing/",
   "/category/*": "/writing/",
-  // WordPress served the feed at /feed/. Both forms are listed so the bare
-  // path does not redirect to /feed/ and then redirect again.
-  "/feed/": "/rss.xml",
-  "/feed": "/rss.xml"
+  // WordPress served the feed at /feed/. This needs a splat rather than the
+  // exact "/feed" and "/feed/" forms: Cloudflare normalises exact sources to
+  // their trailing-slash form, so a bare "/feed" line never fires and the path
+  // 404s instead of redirecting.
+  "/feed*": "/rss.xml"
 };
 
 const redirects = Object.fromEntries(
