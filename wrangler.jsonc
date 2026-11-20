@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "richardwbown",
+  "compatibility_date": "2026-11-20",
+  "assets": {
+    "directory": "./dist",
+    // Astro builds with trailingSlash: "always", so force that form here too
+    // rather than relying on the "auto" default to guess it.
+    "html_handling": "force-trailing-slash",
+    // Serve the Astro-generated dist/404.html with a real 404 status.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+  // No `routes` yet: this deploys to <name>.<subdomain>.workers.dev only.
+  // Once the site has been verified there, publishing to the real domain is a
+  // single addition, which creates the DNS record and certificate itself:
+  //
+  //   "routes": [{ "pattern": "richardwbown.com", "custom_domain": true }]
+}

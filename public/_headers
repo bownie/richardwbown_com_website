@@ -1,0 +1,24 @@
+# Response headers, read by Cloudflare Workers/Pages and Netlify.
+# GitHub Pages ignores this file.
+#
+# Cache-Control is only set on the two content-hashed asset directories below.
+# Cloudflare joins matching rules instead of overriding them, so a Cache-Control
+# on /* would collide with these rather than be replaced by them, and HTML is
+# left on Cloudflare's default revalidation behaviour.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Astro emits content-hashed filenames here, so a given URL never changes.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Featured images and social cards, rewritten only when a post's image changes.
+/og/*
+  Cache-Control: public, max-age=604800
+
+# Keep the raw workers.dev deployment out of search results. This only matches
+# the workers.dev host, not the custom domain.
+https://:name.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
