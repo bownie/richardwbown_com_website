@@ -1,0 +1,32 @@
+---
+title: "When to Say Stop to Copilot’s Unhelpful Hallucinations"
+date: "2025-11-14"
+summary: "When to Say Stop to Copilot's Unhelpful Hallucinations Tools & Infrastructure"
+category: "Delivery & systems thinking"
+image: "og/when-to-say-stop-to-copilots-unhelpful-hallucinations.jpg"
+originalUrl: "https://richardwbown.com/when-to-say-stop-to-copilots-unhelpful-hallucinations/"
+---
+
+It’s quite a regular requirement in my day job that we update the Linux and Windows images associated with our EC2 instances in AWS. There’s a platform team dedicated to rolling out company-specific versions of our base images and recently it was, once again, time to update.
+
+So I’ve spent a week or so using copilot trying to get it to fix the config management build of our Windows base image. This means taking the newly minted base image from AWS and applying our Ansible playbooks and creating a new image from that. So this didn’t work straight out of the box so, as an experiment I’ve been copy/pasting the error message from the CI build directly into copilot and getting it to come up with a solution.
+
+Copilot is more than happy to do this for you. It will confidently fix your code and create a patch. And it seems in this case to get things totally wrong.
+
+In the first instance it fixated on one path for the repeated failure. This was a copy from a S3 bucket and an install of a python executable.
+
+Eventually I realised that the new base image is CIS hardened and it’s probably a permissions thing. I figured this out myself and told copilot and it was “of course it is” and made a load of changes which still aren’t working but I feel we’re making progress. But Copilot should know (from the packer file) that my base image had changed. Instead it obsessed with a red herring despite me telling it the results were exactly the same. If any real thought were happening, rather than probabilities, it would have tried a new approach.
+
+But no, it ploughs onwards, ever onwards. A slave to the numbers rather than showing any form of learning.
+
+## And Then I Ran out of Patience
+
+And then, a few days later. I just give up with the whole thing and go for a [rant on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7394705603392217088/).
+
+_I’ve been getting “help” from copilot this week to fix some installation issues on CIS hardened Windows images. TL;DR – it is not helpful even as a conversation partner. Copilot loves to jump to overcomplicated solutions to the point that it is a distraction, both in terms of the rabbit holes it gets itself into without ‘thinking’ and the generally large changesets it generates.  
+  
+Changes are of course winningly presented, but more dangerously they are a support headache waiting to happen.  
+  
+Config management is where you need to be forensically accurate and focus on repeatability and a complete lack of surprise. Unsurprisingly this is where LLMs really show their limitations_.
+
+![](/uploads/when-to-say-stop-to-copilots-unhelpful-hallucinations-1.png)

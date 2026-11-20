@@ -1,0 +1,36 @@
+---
+title: "Integrating AWS CloudWatch with Honeycomb.io"
+date: "2022-08-03"
+summary: "If you know AWS, then you'll be familiar with Cloudwatch (cue eye-roll). Honeycomb helps you make sense of CloudWatch without much bother."
+category: "Platform engineering"
+image: "og/integrating-aws-cloudwatch-with-honeycomb-io.jpg"
+originalUrl: "https://richardwbown.com/integrating-aws-cloudwatch-with-honeycomb-io/"
+---
+
+If you know [AWS](https://aws.amazon.com/), then you’ll be familiar with [Cloudwatch](https://aws.amazon.com/cloudwatch/) (cue eye-roll). It’s a service that allows captures of logs and metrics from all corners of your AWS infrastructure. You’ll also no doubt be aware, that reporting out of it is not straightforward, and getting meaningful results often requires additional work or tooling.
+
+I’ve got a little test app I’ve been playing around with for the last few months. It’s an Amplify framework React app, backed by [AWS Lambda](https://aws.amazon.com/lambda/) (serverless) and a host of other services. It’s therefore a ‘cloud native’ app. The app has many moving parts and they interact asynchronously therefore working out what’s going on when can be a challenge.
+
+How can we instrument all of these parts so that we can achieve [observability](https://richardwbown.com/building-better-software-through-observability/)?
+
+I’ve started using [Honeycomb.io](https://www.honeycomb.io/) and have been very impressed. It seems like a great choice for observability and the best part is, you can start for free.
+
+The [amplify stack](https://aws.amazon.com/amplify/) will set up many parts to the infrastructure using [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html). A lot of these parts will stream logs directly to CloudWatch but if you also enable [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) on your AWS account you can ingest those events too.
+
+You can use an **agent based instrumentation** which connects your AWS account directly your Honeycomb account. This allows ingest of CloudTrail events whenever you want.
+
+[https://github.com/honeycombio/honeyaws](https://github.com/honeycombio/honeyaws)
+
+That’s great for CloudTrail – so access management and IAM events be needs to be configured to run regularly on an agent/machine that you have handy. Not a problem for most but requires some additional thought. It might even be possible to run this in a Lambda I guess against a schedule to make this fully cloud native too.
+
+Additionally for getting AWS Cloudwatch Logs directly into Honeycomb it’s possible using this CloudFormation setup from Honeycomb:
+
+[https://docs.honeycomb.io/getting-data-in/integrations/aws/aws-cloudwatch-logs/](https://docs.honeycomb.io/getting-data-in/integrations/aws/aws-cloudwatch-logs/)
+
+This is a nice simple CloudFormation deployment which enables you to specify a main CloudWatch log group plus up to six additional Log Groups for you to forward to Honeycomb.
+
+Important to note though that while Amplify stores events in CloudWatch, these are [not accessible via CloudWatch log groups](https://serverfault.com/questions/1100624/cant-find-amplify-access-logs-in-cloudwatch-log-groups). And we can only specify Honeycomb ingest via a LogGroup. Having said that, there are many [other agentless integrations](https://github.com/honeycombio/agentless-integrations-for-aws) for ingesting logs into Amplify.
+
+I’m just starting out with HoneyComb but have been pleasantly surprised with the thoughtful ways it integrates with core AWS features and services. Not just application centric but also service aware and integrated nicely with AWS cloud native tooling.
+
+Followup subjects? Sure – [OpenTelemetry](https://www.honeycomb.io/opentelemetry/) and anomaly detection with [BubbleUp](https://www.honeycomb.io/bubbleup/) look like great subjects to dive into in the future.
