@@ -1,0 +1,3 @@
+# Files in the static asset directory that must not be uploaded.
+# CNAME is a GitHub Pages artefact; Cloudflare sets the hostname itself.
+CNAME

@@ -1,0 +1,46 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "richardwbown",
+  "compatibility_date": "2026-11-20",
+  // Keep the workers.dev URL reachable. Configuring `routes` disables it by
+  // default, and it is a staging surface independent of the live domain (a
+  // disabled workers.dev URL answers every request with error 1042).
+  "workers_dev": true,
+  // A small worker in front of the assets, so www can be redirected without an
+  // extra Cloudflare Redirect Rule permission. It answers www with a 301 and
+  // hands every other request to env.ASSETS.fetch().
+  "main": "src/worker.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // The worker must see every request: a request for / matches index.html on
+    // both hostnames, so with default asset handling it would never run for
+    // www at all.
+    "run_worker_first": true,
+    // Astro builds with trailingSlash: "always", so force that form here too
+    // rather than relying on the "auto" default to guess it.
+    "html_handling": "force-trailing-slash",
+    // Serve the Astro-generated dist/404.html with a real 404 status.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  },
+  // Custom domains, not zone routes. A route was tried first and never fired:
+  // the A records pointed at WP Engine's Cloudflare edge, and even with the
+  // record proxied in this zone the requests kept reaching that origin. A
+  // custom domain makes Cloudflare serve the hostname from the worker itself,
+  // with no origin fetch, which is what actually took effect.
+  //
+  // Attaching these requires the old A records to be deleted first (error
+  // 100117); Cloudflare then manages the records itself. The previous values
+  // were 141.193.213.10 and 141.193.213.11, kept in the DNS baseline for
+  // rollback.
+  //
+  // MX (Google Workspace), the SPF/DMARC TXT records and every other subdomain
+  // are untouched.
+  "routes": [
+    { "pattern": "richardwbown.com", "custom_domain": true },
+    { "pattern": "www.richardwbown.com", "custom_domain": true }
+  ]
+}

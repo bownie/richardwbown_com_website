@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check-placeholders.mjs && astro build",
+    "redirects": "node scripts/build-redirects.mjs",
+    "build": "node scripts/build-redirects.mjs && node scripts/check-placeholders.mjs && astro build",
     "preview": "astro preview",
     "check": "astro check"
   },
