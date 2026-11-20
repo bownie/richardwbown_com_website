@@ -27,7 +27,10 @@ const article = {
     "@type": "Person",
     name: "Richard W. Bown"
   },
-  mainEntityOfPage: canonicalUrl
+  mainEntityOfPage: canonicalUrl,
+  ...(post.data.image
+    ? { image: new URL(sitePath(post.data.image), Astro.site).href }
+    : {})
 };
 ---
 
@@ -37,6 +40,7 @@ const article = {
   canonicalPath={canonicalPath}
   ogType="article"
   publishedTime={post.data.date.toISOString()}
+  image={post.data.image}
   structuredData={article}
 >
   <article class="reading-layout">

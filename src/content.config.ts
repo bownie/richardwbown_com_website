@@ -22,6 +22,9 @@ const posts = defineCollection({
     unlisted: z.boolean().optional(),
     // Which end-of-article call to show; defaults to the consulting CTA.
     callout: z.enum(["consulting", "fiction"]).optional(),
+    // Social card image, relative to the site root (e.g. "og/my-post.jpg").
+    // Lives in public/ so the URL is stable across builds.
+    image: z.string().optional(),
     originalUrl: z.url()
   })
 });
