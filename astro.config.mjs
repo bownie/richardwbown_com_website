@@ -27,6 +27,8 @@ const redirectDestinations = {
   "/monitoring-azure-devops-build-pipelines-with-prometheus/":
     "/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/",
   "/contact-me/": "/contact/",
+  // Old landing page for the novel; it canonicalised to the book site already.
+  "/human-software/": "https://humansoftwarebook.com/",
   "/consulting-offerings/": "/work-with-me/",
   "/blog/": "/writing/",
   "/archive/": "/writing/",
@@ -74,7 +76,9 @@ const redirectDestinations = {
 const redirects = Object.fromEntries(
   Object.entries(redirectDestinations).map(([source, destination]) => [
     source,
-    `${base}${destination.replace(/^\/+/, "")}`
+    /^https?:\/\//.test(destination)
+      ? destination
+      : `${base}${destination.replace(/^\/+/, "")}`
   ])
 );
 

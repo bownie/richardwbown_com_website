@@ -4,7 +4,9 @@ import rss from "@astrojs/rss";
 import { sitePath } from "../utils/site-url";
 
 export const GET: APIRoute = async (context) => {
-  const posts = await getCollection("posts");
+  const posts = (await getCollection("posts")).filter(
+    (post) => !post.data.unlisted
+  );
   const sortedPosts = posts.sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
   );

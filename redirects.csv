@@ -3,6 +3,7 @@ old_path,new_destination,status
 /defining-the-bounded-context-is-the-key-to-flow/,/do-bounded-contexts-and-domain-driven-design-even-matter/,301
 /monitoring-azure-devops-build-pipelines-with-prometheus/,/monitoring-azure-devops-build-pipelines-with-prometheus-and-grafana/,301
 /contact-me/,/contact/,301
+/human-software/,https://humansoftwarebook.com/,301
 /contact/,/contact/,200
 /consulting-offerings/,/work-with-me/,301
 /blog/,/writing/,301
