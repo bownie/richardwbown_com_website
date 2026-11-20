@@ -18,4 +18,9 @@
   // single addition, which creates the DNS record and certificate itself:
   //
   //   "routes": [{ "pattern": "richardwbown.com", "custom_domain": true }]
+  //
+  // Attaching a custom domain rewrites only the A/AAAA record for the single
+  // hostname it names. The MX records (Google Workspace), the SPF/DMARC TXT
+  // records and every other subdomain are left untouched, so mail keeps
+  // working across the cutover.
 }
