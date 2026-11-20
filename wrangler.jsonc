@@ -12,15 +12,16 @@
   },
   "observability": {
     "enabled": true
-  }
-  // No `routes` yet: this deploys to <name>.<subdomain>.workers.dev only.
-  // Once the site has been verified there, publishing to the real domain is a
-  // single addition, which creates the DNS record and certificate itself:
+  },
+  // A Worker Route rather than a custom domain. A custom domain requires the
+  // existing A records at the apex to be deleted first (error 100117), which is
+  // a DNS change; a route intercepts requests to the already-proxied hostname
+  // instead, so no DNS record is touched. The old A records stay in place as the
+  // rollback path: remove this route and the site falls back to WordPress.
   //
-  //   "routes": [{ "pattern": "richardwbown.com", "custom_domain": true }]
-  //
-  // Attaching a custom domain rewrites only the A/AAAA record for the single
-  // hostname it names. The MX records (Google Workspace), the SPF/DMARC TXT
-  // records and every other subdomain are left untouched, so mail keeps
-  // working across the cutover.
+  // MX (Google Workspace), the SPF/DMARC TXT records and every other subdomain
+  // are untouched either way, so mail keeps working across the cutover.
+  "routes": [
+    { "pattern": "richardwbown.com/*", "zone_name": "richardwbown.com" }
+  ]
 }
