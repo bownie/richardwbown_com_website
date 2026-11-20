@@ -12,8 +12,10 @@ export const ogImageSizes: Record<string, { width: number; height: number }> = {
   "og/daniel-pinks-drive-and-what-self-determination-theory-sdt-really-says.jpg": { width: 1200, height: 1658 },
   "og/dave-farley-and-allen-holub-agile-scrum-what-doesnt-work.jpg": { width: 1200, height: 675 },
   "og/do-bounded-contexts-and-domain-driven-design-even-matter.jpg": { width: 600, height: 805 },
+  "og/do-you-love-story-points.jpg": { width: 920, height: 566 },
   "og/emergent-architecture-and-beating-the-monolith.jpg": { width: 1024, height: 1024 },
   "og/fear-driven-development-when-you-work-against-the-flow.jpg": { width: 1200, height: 800 },
+  "og/how-to-be-a-happier-software-engineer.jpg": { width: 1500, height: 1500 },
   "og/how-to-build-a-successful-platform-team.jpg": { width: 1024, height: 1024 },
   "og/how-to-fix-the-failing-team.jpg": { width: 1200, height: 776 },
   "og/how-to-improve-development-speed-using-ansible-and-packer-for-aws.jpg": { width: 374, height: 374 },
@@ -35,5 +37,6 @@ export const ogImageSizes: Record<string, { width: number; height: number }> = {
   "og/the-real-value-of-team-topologies.jpg": { width: 1200, height: 769 },
   "og/was-waterfall-actually-better.jpg": { width: 1200, height: 1600 },
   "og/what-you-need-to-know-before-running-a-backstage-proof-of-concept.jpg": { width: 1168, height: 1170 },
+  "og/why-did-i-write-a-novel-about-it-and-software-engineering.jpg": { width: 1800, height: 1800 },
   "og/why-does-the-tech-world-always-appear-as-dystopia-utopia-or-a-joke.jpg": { width: 1068, height: 1068 }
 };
