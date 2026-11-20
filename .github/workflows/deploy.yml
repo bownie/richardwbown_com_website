@@ -80,3 +80,50 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy-cloudflare:
+    # The publishing path for richardwbown.com. The Pages job above keeps
+    # publishing the staging build to the project Pages URL; this job deploys
+    # the Worker in wrangler.jsonc, which serves the apex and www custom
+    # domains.
+    #
+    # SITE_MODE=production is required: astro.config.mjs derives `base` from it,
+    # and a preview build emits /richardwbown_com_website/ prefixed asset and
+    # link URLs that 404 on the live domain.
+    #
+    # Requires the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository
+    # secrets; the token needs Workers Scripts: Edit (plus Workers Routes: Edit
+    # if the routes in wrangler.jsonc are ever changed from CI).
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: cloudflare-worker
+      cancel-in-progress: false
+    env:
+      SITE_MODE: production
+      LINKEDIN_URL: ${{ vars.LINKEDIN_URL || 'https://www.linkedin.com/in/richard-bown/' }}
+      BLUESKY_URL: ${{ vars.BLUESKY_URL || 'https://bsky.app/profile/bownie.bsky.social' }}
+      SHOW_TALKS: ${{ vars.SHOW_TALKS }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
